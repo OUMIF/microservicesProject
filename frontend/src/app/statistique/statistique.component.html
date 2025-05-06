@@ -1,0 +1,9 @@
+<div class="page-container">
+    <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+   
+    <div class="content-frame" [class.collapsed]="sidebarCollapsed">
+      <div class="login-container">
+
+      </div>
+    </div>
+</div>
