@@ -1,20 +1,29 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { GrapheComponent } from './graphe/graphe.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 @Component({
   selector: 'app-accueil',
-  imports: [CommonModule, SidebarComponent],
+  imports: [CommonModule, SidebarComponent,GrapheComponent,BarChartComponent],
   standalone: true,
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css'
 })
 export class AccueilComponent {
-  sidebarCollapsed = false;
+  sidebarCollapsed = true;
 
   onSidebarToggled(event: boolean) {
     this.sidebarCollapsed = event;
   }
+
+  testInfo = {
+    name: 'Math Test',
+    createdDate: new Date('2025-05-01'),
+    totalPeople: 42,
+    isVoteOpen: true
+  };
 
   courses = [
     {

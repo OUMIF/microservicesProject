@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { WelcomeCarouselComponent } from './welcome-carousel/welcome-carousel.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { GestionEtudiantsComponent } from "./gestion-etudiants/gestion-etudiants.component";
@@ -13,15 +12,11 @@ import { CreateTestComponent } from "./create-test/create-test.component";
 export const routes: Routes = [
     {
         path:'',
-        redirectTo:'smth',
+        redirectTo:'welcome',
         pathMatch:'full'
     },
     {
         path: 'welcome',
-        loadComponent: () => import('./welcome-carousel/welcome-carousel.component').then(m => m.WelcomeCarouselComponent)
-    },
-    {
-        path: 'smth',
         loadComponent: () => import('./welcome/welcome.component').then(m => m.WelcomeComponent)
     },
       
@@ -52,5 +47,13 @@ export const routes: Routes = [
     {
         path: 'create-test',
         loadComponent: () => import('./create-test/create-test.component').then(m => m.CreateTestComponent)
+    },
+    {
+        path: 'tests',
+        loadComponent: () => import('./tests/gestion-tests/gestion-tests.component').then(m => m.GestionTestsComponent)
+    },
+    {
+        path: 'test/:id',
+        loadComponent: () => import('./tests/test-details/test-details.component').then(m => m.TestDetailsComponent)
     }
 ];

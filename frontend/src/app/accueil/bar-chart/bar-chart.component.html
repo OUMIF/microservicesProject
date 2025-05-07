@@ -1,0 +1,18 @@
+    <h2>Last Tests stats</h2>
+    <p>for each question</p>
+    <div *ngIf="showChart && chartOptions">
+        <apx-chart 
+          [series]="chartOptions.series" 
+          [chart]="chartOptions.chart"
+          [xaxis]="chartOptions.xaxis"
+          [dataLabels]="chartOptions.dataLabels"
+          [stroke]="chartOptions.stroke"
+          [fill]="chartOptions.fill"
+          [tooltip]="chartOptions.tooltip"
+          [grid]="chartOptions.grid"
+          [yaxis]="chartOptions.yaxis"
+          [markers]="chartOptions.markers"
+          [colors]="chartOptions.colors"
+          [plotOptions]="chartOptions.plotOptions">
+        </apx-chart>
+      </div>
