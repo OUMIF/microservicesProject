@@ -76,12 +76,13 @@ namespace ApiGateway
 
             //app.UseHttpsRedirection();
             app.UseAuthentication();
-            app.UseAuthorization();
-            // Enable CORS for development
             app.UseCors(builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
+            app.UseAuthorization();
+            
+           
             app.UseOcelot().Wait();
 
 
