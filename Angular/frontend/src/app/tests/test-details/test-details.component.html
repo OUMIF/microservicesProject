@@ -1,0 +1,21 @@
+<!-- test-details.component.html -->
+<div class="test-details-container">
+    <h1>{{ test?.title }}</h1>
+    
+    <div class="detail-section">
+      <h2>Description</h2>
+      <p>{{ test?.content }}</p>
+    </div>
+    
+    <div class="detail-section">
+      <h2>Date</h2>
+      <p>{{ test?.date | date }}</p>
+    </div>
+    
+    <div class="detail-section">
+      <h2>Durée</h2>
+      <p>{{ test?.duration }} minutes</p>
+    </div>
+    
+    <button class="back-button" (click)="goBack()">Retour à la liste</button>
+  </div>

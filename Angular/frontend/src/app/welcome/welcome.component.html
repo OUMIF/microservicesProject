@@ -1,0 +1,217 @@
+
+<!-- Welcome Section -->
+<section 
+  #sectionRef
+  class="welcome-section" 
+  [class.opacity-0]="isContentVisible"
+  [class.pointer-events-none]="isContentVisible"
+  [class.opacity-100]="!isContentVisible"
+  (click)="onEnterClick()"
+  [ngStyle]="{
+    backgroundImage: 'url(https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg)',
+    backgroundColor: '#1e1e2f',
+    zIndex: 10
+  }"
+>
+  <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-indigo-900/70"></div>
+
+  <div class="welcome-content relative z-10 text-center px-4 animate" (click)="triggerAnimation(welcomeContent)" #welcomeContent>
+    <h1 class="text-6xl md:text-8xl font-extrabold tracking-wider text-white mb-2 welcome-title"
+        style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', fantasy; 
+               letter-spacing: 0.1rem; 
+               text-shadow: 0 2px 10px rgba(0, 0, 0, 0.63);">
+      WELCOME.
+    </h1>
+    <h6 class="text-white text-lg md:text-xl opacity-40 welcome-subtitle">
+      Click to explore our course evaluation platform
+    </h6>
+
+  
+  
+<!--     <div class="flex justify-center">
+      <button 
+        (click)="onEnterClick()"
+        class="group bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 rounded-full px-6 py-3 flex items-center transition-all duration-300"
+      >
+        <span class="mr-2">Enter</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7l7 7-7 7" />
+        </svg>
+      </button>
+    </div> -->
+  </div>
+</section>
+
+<!-- Content Section -->
+<section *ngIf="isContentVisible">
+  <div class="hero-section section-2 opacity-100" style="background-image: url(assets/figma4.png);">
+      <div class="container">
+        <div class="hero-content">
+          <div class="text-container">
+            <span class="subtitle fade-in">Course Evaluation Software</span>
+            <h1 class="title slide-up">The course evaluation software that makes a difference</h1>
+            <p class="description fade-in-delay">
+              Improve the student and faculty experience with course evaluation software trusted by 
+              <span class="highlight">8,800+ schools</span>. Identify gaps in the learning experience 
+              and understand which actions have the biggest impact on experience, engagement, and performance.
+            </p>
+            <div class="cta-container fade-in-delay-more">
+                <div class="col">
+                    <button class="btn light modal-button" href="#" (click)="openModal()">
+                      <span class="text">Login</span>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.66669 11.3334L11.3334 4.66669" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.66669 4.66669H11.3334V11.3334" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                  </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Features Section Preview -->
+<section class="features" *ngIf="isContentVisible">
+  <div class="section-title">Powerful Features</div>
+  <div class="outerdiv">
+    <div class="innerdiv">
+      <!-- div1 -->
+      <div class="div1 eachdiv">
+        <div class="userdetails">
+          <div class="imgbox">
+            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-daniel.jpg" alt="">
+          </div>
+          <div class="detbox">
+            <p class="name">Daniel Clifford</p>
+            <p class="designation">Verified Graduate</p>
+          </div>
+        </div>
+        <div class="review">
+          <h4>I received a job offer mid-course, and the subjects I learned were current, if not more so, in the company I joined. I honestly feel I got every penny’s worth.</h4>
+        <p>“ I was an EMT for many years before I joined the bootcamp. I’ve been looking to make a transition and have heard some people who had an amazing experience here. I signed up for the free intro course and found it incredibly fun! I enrolled shortly thereafter. The next 12 weeks was the best - and most grueling - time of my life. Since completing the course, I’ve successfully switched careers, working as a Software Engineer at a VR startup. ”</p>
+        </div>
+      </div>
+      <!-- div2 -->
+      <div class="div2 eachdiv">
+        <div class="userdetails">
+          <div class="imgbox">
+            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-jonathan.jpg" alt="">
+          </div>
+          <div class="detbox">
+            <p class="name">Jonathan Walters</p>
+            <p class="designation">Verified Graduate</p>
+          </div>
+        </div>
+        <div class="review">
+          <h4>The team was very supportive and kept me motivated</h4>
+        <p>“ I started as a total newbie with virtually no coding skills. I now work as a mobile engineer for a big company. This was one of the best investments I’ve made in myself. ”</p>
+        </div>
+      </div>
+      <!-- div3 -->
+      <div class="div3 eachdiv">
+        <div class="userdetails">
+          <div class="imgbox">
+            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-kira.jpg" alt="">
+          </div>
+          <div class="detbox">
+            <p class="name dark">Kira Whittle</p>
+            <p class="designation dark">Verified Graduate</p>
+          </div>
+        </div>
+        <div class="review dark">
+          <h4>Such a life-changing experience. Highly recommended!</h4>
+          <p>“ Before joining the bootcamp, I’ve never written a line of code. I needed some structure from professionals who can help me learn programming step by step. I was encouraged to enroll by a former student of theirs who can only say wonderful things about the program. The entire curriculum and staff did not disappoint. They were very hands-on and I never had to wait long for assistance. The agile team project, in particular, was outstanding. It took my learning to the next level in a way that no tutorial could ever have. In fact, I’ve often referred to it during interviews as an example of experience. It certainly helped me land a job as a full-stack 100% recommend! ”</p>
+        </div>
+      </div>
+      <!-- div4 -->
+      <div class="div4 eachdiv">
+        <div class="userdetails">
+          <div class="imgbox">
+            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-jeanette.jpg" alt="">
+          </div>
+          <div class="detbox">
+            <p class="name dark">Jeanette Harmon</p>
+            <p class="designation dark">Verified Graduate</p>
+          </div>
+        </div>
+        <div class="review dark">
+          <h4>An overall wonderful and rewarding experience</h4>
+        <p>“ Thank you for the wonderful experience! I now have a job I really enjoy, and make a good living while doing something I love. ”</p>
+        </div>
+      </div>
+      <!-- div5 -->
+      <div class="div5 eachdiv">
+        <div class="userdetails">
+          <div class="imgbox">
+            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-patrick.jpg" alt="">
+          </div>
+          <div class="detbox">
+            <p class="name">Patrick Abrams</p>
+            <p class="designation">Verified Graduate</p>
+          </div>
+        </div>
+        <div class="review">
+          <h4>Awesome teaching support from TAs who did the bootcamp themselves. Getting guidance from them and learning from their experiences was easy.</h4>
+        <p>“ The staff seem genuinely concerned about my progress which I find really refreshing. The program gave me the confidence necessary to be able to go out in the world and present myself as a capable junior developer. The standard is above the rest. You will get the personal attention you need from an incredible community of smart and amazing people. ”</p>
+        </div>
+      </div>
+    </div>
+  </div>   
+</section>
+
+</section>
+<div class="modal" [class.is-open]="isOpened">
+  <div class="form-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" *ngIf="!showForgotForm" class="form">
+      <button type="button" class="icon-button close-button" (click)="closeModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+          <path d="M 25 3 C 12.86158 3 3 12.86158 3 25 C 3 37.13842 12.86158 47 25 47 C 37.13842 47 47 37.13842 47 25 C 47 12.86158 37.13842 3 25 3 z M 25 5 C 36.05754 5 45 13.94246 45 25 C 45 36.05754 36.05754 45 25 45 C 13.94246 45 5 36.05754 5 25 C 5 13.94246 13.94246 5 25 5 z M 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.980469 15.990234 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 z"/>
+        </svg>
+      </button>
+      <h1>LOGIN</h1>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input formControlName="email" id="email" type="text" placeholder="Email" />
+        <span *ngIf="isSubmitted && email?.errors?.['required']">*Email is required</span>
+        <span *ngIf="isSubmitted && email?.errors?.['pattern']">*Invalid email format</span>
+        <span *ngIf="isSubmitted && email?.errors?.['email']">*Invalid email</span>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input formControlName="password" id="password" type="password" placeholder="mot de passe" />
+        <span *ngIf="isSubmitted && password?.errors?.['required']">*Password is required</span>
+        <span *ngIf="isSubmitted && password?.errors?.['minlength']">
+          *Password must be at least 6 characters
+        </span>
+      
+        <div class="form-group forgot-password">
+          <button type="button" (click)="toggleForm()">Mot de passe oublié ?</button>
+        </div>
+      </div>
+
+      <div *ngIf="loginError" class="error-message">
+        {{ loginError }}
+      </div>
+      
+      <button type="submit" class="form-submit-btn" (click)="onLogin()">Submit</button>
+      
+    </form>
+    <form *ngIf="showForgotForm" class="form">
+      <h1>RÉINITIALISER</h1>
+      <div class="form-group">
+        <label for="forgotEmail">Email</label>
+        <input required name="forgotEmail" id="forgotEmail" type="email" placeholder="Entrez votre email">
+      </div>
+      <div class="form-group">
+        <button type="button" (click)="toggleForm()">← Retour à la connexion</button>
+      </div>
+      <button type="submit" class="form-submit-btn">Envoyer</button>
+    </form>
+  </div>
+
+  
+
+
+
+

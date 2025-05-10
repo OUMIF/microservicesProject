@@ -1,0 +1,55 @@
+<div class="page-container">
+    <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+  
+    <div class="content-frame" [class.collapsed]="sidebarCollapsed">
+      <div class="login-container">
+  
+            <!-- Welcome section -->
+            <div class="welcome-container">
+                <div class="welcome-text">
+                  <h1>Welcome to your Dashboard</h1>
+                  <p>Empowering your learning journey every step of the way.</p>
+                </div>
+                <div class="welcome-icon">
+                  <img src="assets/svg2.jpg" alt="Graduation cap" />
+                </div>
+              </div>        
+        <!-- Two-column layout: LEFT for welcome + charts, RIGHT for cards -->
+        <div class="top-section"> 
+          <!-- LEFT Column -->
+          <div class="left-column">
+            <!-- Charts right below welcome -->
+                <div class="chart-container">
+                  <app-graphe></app-graphe>
+                </div>
+                <div class="chart-container">
+                  <app-bar-chart></app-bar-chart>
+                </div>
+          </div>
+  
+          <!-- RIGHT Column: Progress Cards -->
+          <div class="progress-cards-container">
+            <div class="progress-card"
+                *ngFor="let course of courses"
+                [attr.data-progress]="course.progress"
+                [ngStyle]="{'--hover-color': getProgressColor(course.progress)}">
+              <div class="card-header">
+                <h3>{{ course.title }}</h3>
+                <span class="completion-rate">{{ course.progress }}%</span>
+              </div>
+              <p class="card-description">{{ course.description }}</p>
+              <div class="progress-container">
+                <div class="progress-bar" 
+                     [style.width.%]="course.progress"></div>
+              </div>
+              <div class="stats">
+                <span>{{ course.completed }}/{{ course.total }} students completed</span>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
