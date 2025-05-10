@@ -9,9 +9,23 @@ namespace ApiGateway
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Add services
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: "_myAllowSpecificOrigins",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:4200") // Allow the specific origin
+                              .AllowAnyHeader()
+                              .AllowAnyMethod()
+                              .AllowCredentials(); // Allow credentials
+                    });
+            });
+
             builder.WebHost.UseUrls("http://localhost:5001", "https://localhost:5000");
 
             // Add services to the container.
@@ -67,21 +81,15 @@ namespace ApiGateway
 
             var app = builder.Build();
 
+            // Use CORS
+            app.UseCors("_myAllowSpecificOrigins");
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
-
-            //app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseCors(builder => builder
-               .AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader());
-            app.UseAuthorization();
-            
+            }          
            
             app.UseOcelot().Wait();
 
