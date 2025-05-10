@@ -117,8 +117,6 @@ namespace UserService
             });
 
             // Register services
-            builder.Services.AddScoped<MailService>();
-
             builder.Services.AddScoped<ITokenService, TokenService>();
 
             var app = builder.Build();

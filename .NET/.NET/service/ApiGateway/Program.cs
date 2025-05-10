@@ -26,6 +26,8 @@ namespace ApiGateway
                     });
             });
 
+
+
             builder.WebHost.UseUrls("http://localhost:5001", "https://localhost:5000");
 
             // Add services to the container.
@@ -82,17 +84,22 @@ namespace ApiGateway
             var app = builder.Build();
 
             // Use CORS
-            app.UseCors("_myAllowSpecificOrigins");
+            app.UseCors("_myAllowSpecificOrigins"); // MUST come before auth middlewares
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }          
-           
-            app.UseOcelot().Wait();
+            }
 
+
+            //app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            // Add Ocelot here
+            await app.UseOcelot();
 
             app.MapControllers();
 

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 using UserService.Dtos;
 using UserService.Models;
-using UserService.Services;
 
 namespace UserService.Controllers
 {
@@ -15,13 +14,11 @@ namespace UserService.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly ILogger<AdminController> _logger;
-        private readonly MailService _mailService;
 
-        public AdminController(UserManager<AppUser> userManager, ILogger<AdminController> logger, MailService mailService)
+        public AdminController(UserManager<AppUser> userManager, ILogger<AdminController> logger)
         {
             _userManager = userManager;
             _logger = logger;
-            _mailService = mailService;
         }
 
         [HttpPost("create-professeur")]
@@ -60,12 +57,6 @@ namespace UserService.Controllers
 
             await _userManager.AddToRoleAsync(professeur, "Professeur");
             _logger.LogInformation($"Successfully created professor {request.Nom} {request.Prenom}");
-            await _mailService.SendEmailAsync(
-               professeur.Email,
-                  "Your Account Has Been Created",
-                $"Hello {professeur.Prenom},\n\nYour account has been created.\nLogin: {professeur.Email}\nPassword: {generatedPassword}"
-             );
-
 
             return Ok(new
             {
@@ -111,12 +102,6 @@ namespace UserService.Controllers
 
             await _userManager.AddToRoleAsync(etudiant, "Etudiant");
             _logger.LogInformation($"Successfully created student {request.Nom} {request.Prenom}");
-            await _mailService.SendEmailAsync(
-                      etudiant.Email,
-                     "Your Account Has Been Created",
-                      $"Hello {etudiant.Prenom},\n\nYour account has been created.\nLogin: {etudiant.Email}\nPassword: {generatedPassword}"
-                      );
-
 
             return Ok(new
             {
@@ -181,20 +166,7 @@ namespace UserService.Controllers
             var professeur = await _userManager.FindByIdAsync(id);
             if (professeur == null) return NotFound("Professor not found.");
 
-            
-            if (!string.IsNullOrEmpty(request.Email) && request.Email != professeur.Email)
-            {
-                
-                var existingUser = await _userManager.FindByEmailAsync(request.Email);
-                if (existingUser != null && existingUser.Id != id)
-                {
-                    return BadRequest("Email is already in use by another user.");
-                }
-
-                professeur.Email = request.Email;
-                professeur.UserName = request.Email;
-            }
-
+      
             professeur.Nom = request.Nom ?? professeur.Nom;
             professeur.Prenom = request.Prenom ?? professeur.Prenom;
             professeur.Photo = request.Photo ?? professeur.Photo;
@@ -223,20 +195,7 @@ namespace UserService.Controllers
             var etudiant = await _userManager.FindByIdAsync(id);
             if (etudiant == null) return NotFound("Student not found.");
 
-       
-            if (!string.IsNullOrEmpty(request.Email) && request.Email != etudiant.Email)
-            {
-                
-                var existingUser = await _userManager.FindByEmailAsync(request.Email);
-                if (existingUser != null && existingUser.Id != id)
-                {
-                    return BadRequest("Email is already in use by another user.");
-                }
-
-                etudiant.Email = request.Email;
-                etudiant.UserName = request.Email; 
-            }
-
+            
             etudiant.Nom = request.Nom ?? etudiant.Nom;
             etudiant.Prenom = request.Prenom ?? etudiant.Prenom;
             etudiant.Photo = request.Photo ?? etudiant.Photo;
