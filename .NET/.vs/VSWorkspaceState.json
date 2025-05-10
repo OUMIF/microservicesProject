@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\.NET",
+    "\\.NET\\service",
+    "\\.NET\\service\\ApiGateway"
   ],
+  "SelectedNode": "\\.NET\\service\\ApiGateway\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

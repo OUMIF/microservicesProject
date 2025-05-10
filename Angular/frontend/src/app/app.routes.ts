@@ -5,8 +5,9 @@ import { GestionEtudiantsComponent } from "./gestion-etudiants/gestion-etudiants
 import { GestionProfesseursComponent } from "./gestion-professeurs/gestion-professeurs.component";
 import { CompteAdminComponent } from "./compte-admin/compte-admin.component";
 import { CreateFormationComponent } from "./create-formation/create-formation.component";
-import { StatistiqueComponent } from "./statistique/statistique.component";
 import { CreateTestComponent } from "./create-test/create-test.component";
+import { AccueilEtudiantComponent } from "./Users/etudiant/accueil-etudiant/accueil-etudiant.component";
+import { FormationTestComponent } from "./Users/etudiant/formation-test/formation-test.component";
 
 export const routes: Routes = [
     {
@@ -40,10 +41,6 @@ export const routes: Routes = [
         loadComponent: () => import('./create-formation/create-formation.component').then(m => m.CreateFormationComponent)
     },
     {
-        path: 'statistique',
-        loadComponent: () => import('./statistique/statistique.component').then(m => m.StatistiqueComponent)
-    },
-    {
         path: 'create-test',
         loadComponent: () => import('./create-test/create-test.component').then(m => m.CreateTestComponent)
     },
@@ -60,7 +57,11 @@ export const routes: Routes = [
         loadComponent: () => import('./Users/prof/prof.component').then(m => m.ProfComponent)
     },
     {
-        path: 'etudiant',
-        loadComponent: () => import('./Users/etudiant/etudiant.component').then(m => m.EtudiantComponent)
-    }    
+        path: 'accueil-etudiant',
+        loadComponent: () => import('./Users/etudiant/accueil-etudiant/accueil-etudiant.component').then(m => m.AccueilEtudiantComponent)
+    },
+    {
+        path: 'formation-test/:id',
+        loadComponent: () => import('./Users/etudiant/formation-test/formation-test.component').then(m => m.FormationTestComponent)
+    },  
 ];

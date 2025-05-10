@@ -10,78 +10,48 @@
 
 .content-frame {
   flex: 1;
-  padding: 20px;
+  padding: 10px;
   background: white;
-  height: calc(93.2vh - 2vw);
+  height: calc(93.2vh - 0.9vw);
   margin-left: calc(225px + 1.4vw);
   margin-right: 0.4vw;
   border-radius: 14px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
   overflow-y: auto;
+  border-top: 4px solid #d10000;
 }
 
 .content-frame.collapsed {
   margin-left: calc(70px + 0.2vw);
+  border-top: 4px solid #d10000;
 }
 
 .login-container {
-  max-width: 1200px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 0px;
 }
 
-
-.welcome-container {
-  display: flex;
-  align-items: center;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 2rem 2rem;
-  margin-bottom: 2rem;
-  margin-top: 1rem;
-  border: 1px solid #dcdcdc;
-  position: relative;
+.page-title {
+    color: #000000;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #f0f0f0;
+    position: relative;
 }
 
-.welcome-text {
-  flex: 1;
-  padding-right: 2rem;
-}
-
-.welcome-text h1 {
-  font-size: 2rem;
-  font-weight: 1000;
-  color: #111;
-  margin-bottom: 0.7rem;
-  line-height: 1;
-}
-
-.welcome-text p {
-  font-size: 1rem;
-  color: #444;
-  margin: 0;
-  font-weight: 400;
-  line-height: 1.5;
-}
-
-.welcome-icon {
-  flex-shrink: 0;
-  margin-right: 3.5rem;
-}
-
-.welcome-icon img {
-  height: 80px;
-  width: auto;
-  transform: scale(2);
-  transform-origin: center;
-  transition: transform 0.3s ease;
-  pointer-events: none;
-}
-
-.welcome-icon:hover img {
-  transform: scale(2.5) rotate(-5deg);
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100px;
+    height: 2px;
+    background: #d10000;
 }
 
 
@@ -135,6 +105,12 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 22px;
+  max-width: 100%;
+  flex-wrap: wrap; 
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  padding: 25px 0px;
 }
 
 .search-box {
@@ -397,7 +373,7 @@ tr:hover td {
 }
 
 .icon-button.edit:hover {
-  color: #1e40af;
+  color: #584f4f;
 }
 
 .icon-button.delete:hover {
@@ -683,7 +659,7 @@ z-index: 1000;
 .modal {
 width: 500px;
 background: linear-gradient(#ffffff, #ffffff) padding-box,
-            linear-gradient(145deg, transparent 35%,#4d56b8, #1928cd) border-box;
+            linear-gradient(145deg, transparent 35%,#a41010, #a41010) border-box;
 border: 3px solid transparent;
 padding: 22px 44px;
 font-size: 14px;
@@ -748,13 +724,13 @@ color: #0000003b;
 
 .form-group input:hover,
 .form-group select:hover {
-box-shadow: 0 0 3px #1928cd;
+box-shadow: 0 0 3px #a41010;
 }
 
 .form-group input:focus,
 .form-group select:focus {
 outline: none;
-border-color: #d0dfec;
+border-color: #a41010;
 background-color: #fff;
 }
 
@@ -945,4 +921,104 @@ background-color: #1a2a3a;
   width: 90%;
   padding: 15px;
 }
+}
+
+
+/* Style général pour les deux sélecteurs */
+.custom-multiselect {
+  position: relative;
+  width: 100%;
+}
+
+.select-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  border: 1px solid #000000;
+  cursor: pointer;
+  min-height: 10px;
+  transition: all 0.3s;
+}
+
+.select-box:hover {
+  box-shadow: 0 0 3px #a41010;
+}
+
+.selected-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex-grow: 1;
+}
+
+.selected-item {
+  background: #a41010;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.remove-item {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.remove-item:hover {
+  color: #ffcccc;
+}
+
+.placeholder {
+  color: #0000003b;
+  font-style: italic;
+}
+
+.dropdown-arrow {
+  margin-left: 8px;
+  font-size: 10px;
+  color: #666;
+}
+
+.options-container {
+  position: absolute;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 4px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.option {
+  padding: 8px 12px;
+  transition: background-color 0.2s;
+}
+
+.option:hover {
+  background-color: #f8f8f8;
+}
+
+.option label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.option input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  accent-color: #a41010;
 }

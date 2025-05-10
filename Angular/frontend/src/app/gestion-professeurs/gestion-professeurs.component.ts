@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -437,5 +437,43 @@ export class GestionProfesseursComponent implements OnInit{
     return colorMap[firstChar] || '#9ca3af'; // default gray
   }
   
+  showProgramsDropdown = false;
+  showModulesDropdown = false;
 
+  toggleDropdown(type: 'programs' | 'modules') {
+    if (type === 'programs') {
+      this.showProgramsDropdown = !this.showProgramsDropdown;
+      this.showModulesDropdown = false;
+    } else {
+      this.showModulesDropdown = !this.showModulesDropdown;
+      this.showProgramsDropdown = false;
+    }
+  }
+
+  toggleSelection(item: string, type: 'programs' | 'modules') {
+    const array = type === 'programs' 
+      ? this.currentProfessor.programs 
+      : this.currentProfessor.modules;
+
+    const index = array.indexOf(item);
+    if (index > -1) {
+      array.splice(index, 1);
+    } else {
+      array.push(item);
+    }
+  }
+
+  removeItem(event: Event, item: string, type: 'programs' | 'modules') {
+    event.stopPropagation();
+    this.toggleSelection(item, type);
+  }
+
+  // Pour fermer les dropdowns en cliquant à l'extérieur
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+    if (!(event.target as HTMLElement).closest('.custom-multiselect')) {
+      this.showProgramsDropdown = false;
+      this.showModulesDropdown = false;
+    }
+  }
 }
