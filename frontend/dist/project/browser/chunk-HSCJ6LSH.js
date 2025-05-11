@@ -1,0 +1,1 @@
+import{Ia as n,Xa as o,Ya as a,kb as i}from"./chunk-GGVYOOZC.js";import"./chunk-EQDQRRRY.js";var p=class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=n({type:e,selectors:[["app-etudiant"]],decls:2,vars:0,template:function(t,m){t&1&&(o(0,"p"),i(1,"etudiant works!"),a())},encapsulation:2})};export{p as EtudiantComponent};

@@ -1,0 +1,19 @@
+{
+  "routes": {
+    "/": {},
+    "/accueil": {},
+    "/compte-admin": {},
+    "/create-formation": {},
+    "/create-test": {},
+    "/etudiant": {},
+    "/gestion-etudiants": {},
+    "/gestion-professeurs": {},
+    "/prof": {},
+    "/statistique": {},
+    "/test/1": {},
+    "/test/2": {},
+    "/test/3": {},
+    "/tests": {},
+    "/welcome": {}
+  }
+}
