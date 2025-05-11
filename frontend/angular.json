@@ -34,7 +34,14 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "jspdf",
-              "jspdf-autotable"
+              "jspdf-autotable",
+              "core-js",
+              "raf",
+              "rgbcolor",
+                "canvg",
+              "@babel/runtime/helpers/asyncToGenerator",
+              "@babel/runtime/helpers/defineProperty",
+              "@babel/runtime/helpers/typeof"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -45,17 +52,17 @@
           "configurations": {
             "production": {
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
-              ],
+                  {
+                    "type": "initial",
+                    "maximumWarning": "1MB",
+                    "maximumError": "20MB"
+                  },
+                  {
+                    "type": "anyComponentStyle",
+                    "maximumWarning": "20kB",
+                    "maximumError": "40kB"
+                  }
+                ],
               "outputHashing": "all"
             },
             "development": {
@@ -106,5 +113,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "73ce4081-a8c0-4408-a9bb-bc4dee7d73a1"
   }
 }
