@@ -1,485 +1,243 @@
 {
-     "Routes": [
-         {
-             "DownstreamPathTemplate": "/api/auth/login",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5018
-                 }
-             ],
-             "UpstreamPathTemplate": "/Auth/login",
-             "UpstreamHttpMethod": [ "POST" ]
-         },
-         {
-             "DownstreamPathTemplate": "/api/admin/{everything}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5018
-                 }
-             ],
-             "UpstreamPathTemplate": "/admin/{everything}",
-             "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Formation",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/formations",
-             "UpstreamHttpMethod": [ "GET" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Formation/{id}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/formations/{id}",
-             "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Formation",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/formations",
-             "UpstreamHttpMethod": [ "POST" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres",
-             "UpstreamHttpMethod": [ "GET" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/{id}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/{id}",
-             "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres",
-             "UpstreamHttpMethod": [ "POST" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/professors",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/professors",
-             "UpstreamHttpMethod": [ "POST" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/professors/{filiereId}/{professorId}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/professors/{filiereId}/{professorId}",
-             "UpstreamHttpMethod": [ "DELETE" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/professors/{filiereId}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/professors/{filiereId}",
-             "UpstreamHttpMethod": [ "GET" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/students",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/students",
-             "UpstreamHttpMethod": [ "POST" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/students/{filiereId}/{studentId}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/students/{filiereId}/{studentId}",
-             "UpstreamHttpMethod": [ "DELETE" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/students/{filiereId}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/students/{filiereId}",
-             "UpstreamHttpMethod": [ "GET" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/byFormation/{formationId}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5019
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/byFormation/{formationId}",
-             "UpstreamHttpMethod": [ "GET" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         }
-     ],
-     "GlobalConfiguration": {
-         "BaseUrl": "https://localhost:5000"
-     }
- }{
-     "Routes": [
-         {
-             "DownstreamPathTemplate": "/api/auth/login",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5018
-                 }
-             ],
-             "UpstreamPathTemplate": "/Auth/login",
-             "UpstreamHttpMethod": [ "POST" ]
-         },
-         {
-             "DownstreamPathTemplate": "/api/admin/{everything}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5018
-                 }
-             ],
-             "UpstreamPathTemplate": "/admin/{everything}",
-             "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Formation",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/formations",
-             "UpstreamHttpMethod": [ "GET" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Formation/{id}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/formations/{id}",
-             "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Formation",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/formations",
-             "UpstreamHttpMethod": [ "POST" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres",
-             "UpstreamHttpMethod": [ "GET" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/{id}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/{id}",
-             "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres",
-             "UpstreamHttpMethod": [ "POST" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/professors",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/professors",
-             "UpstreamHttpMethod": [ "POST" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/professors/{filiereId}/{professorId}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/professors/{filiereId}/{professorId}",
-             "UpstreamHttpMethod": [ "DELETE" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/professors/{filiereId}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/professors/{filiereId}",
-             "UpstreamHttpMethod": [ "GET" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/students",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/students",
-             "UpstreamHttpMethod": [ "POST" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/students/{filiereId}/{studentId}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/students/{filiereId}/{studentId}",
-             "UpstreamHttpMethod": [ "DELETE" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/students/{filiereId}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/students/{filiereId}",
-             "UpstreamHttpMethod": [ "GET" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         },
-         {
-             "DownstreamPathTemplate": "/api/Filiere/byFormation/{formationId}",
-             "DownstreamScheme": "http",
-             "DownstreamHostAndPorts": [
-                 {
-                     "Host": "localhost",
-                     "Port": 5232
-                 }
-             ],
-             "UpstreamPathTemplate": "/filieres/byFormation/{formationId}",
-             "UpstreamHttpMethod": [ "GET" ],
-             "AuthenticationOptions": {
-                 "AuthenticationProviderKey": "Bearer",
-                 "AllowedScopes": []
-             }
-         }
-     ],
-     "GlobalConfiguration": {
-         "BaseUrl": "https://localhost:5000"
-     }
- }
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/auth/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5018
+        }
+      ],
+      "UpstreamPathTemplate": "/Auth/login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/admin/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5018
+        }
+      ],
+      "UpstreamPathTemplate": "/admin/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Formation",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/formations",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Formation/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/formations/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Formation",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/formations",
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Filiere",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/filieres",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Filiere/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/filieres/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Filiere",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/filieres",
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Filiere/professors",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/filieres/professors",
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Filiere/professors/{filiereId}/{professorId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/filieres/professors/{filiereId}/{professorId}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Filiere/professors/{filiereId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/filieres/professors/{filiereId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Filiere/students",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/filieres/students",
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Filiere/students/{filiereId}/{studentId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/filieres/students/{filiereId}/{studentId}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Filiere/students/{filiereId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/filieres/students/{filiereId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Filiere/byFormation/{formationId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ],
+      "UpstreamPathTemplate": "/filieres/byFormation/{formationId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5000"
+  }
+}
