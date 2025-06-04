@@ -1,0 +1,174 @@
+.course-detail-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #333;
+}
+
+.course-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.course-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.course-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.course-tagline {
+  font-size: 20px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.course-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.featuring-text {
+  margin-top: 20px;
+  font-weight: 500;
+  color: #666;
+}
+
+.school-logo img {
+  max-height: 40px;
+  margin-right: 10px;
+}
+
+.action-buttons {
+  margin-top: 30px;
+
+  .btn-apply,
+  .btn-enroll {
+    background-color: #a51c30;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #870d24;
+    }
+  }
+
+  .btn-enroll {
+    background-color: #555;
+    &:hover {
+      background-color: #333;
+    }
+  }
+}
+
+.course-video {
+  flex: 1;
+  min-width: 300px;
+
+  .video-container {
+    position: relative;
+
+    .course-image {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    svg {
+      width: 72px;
+      height: 72px;
+    }
+  }
+}
+
+.course-details {
+  margin-top: 40px;
+
+  .details-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .detail-column {
+    flex: 1;
+    min-width: 260px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+
+    .month-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .detail-item {
+      margin-bottom: 15px;
+
+      h3 {
+        font-size: 16px;
+        color: #444;
+        margin-bottom: 5px;
+      }
+
+      p {
+        margin: 0;
+        color: #555;
+        font-size: 14px;
+      }
+
+      .discount-text {
+        color: #a51c30;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.back-button {
+  margin-top: 40px;
+  text-align: left;
+
+  button {
+    background: none;
+    border: none;
+    color: #a51c30;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

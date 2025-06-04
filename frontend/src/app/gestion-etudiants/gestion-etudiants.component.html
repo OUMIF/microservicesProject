@@ -4,16 +4,7 @@
     <div class="content-frame" [class.collapsed]="sidebarCollapsed">
       <div class="login-container">
         
-        <div class="welcome-container">
-          <div class="welcome-text">
-              <h1>Gestion des Comptes Étudiants</h1>
-              <p>Créez, gérez et organisez les profils des étudiants pour un suivi clair et structuré de leur parcours académique.</p>
-          </div>
-          <div class="welcome-icon">
-              <img src="assets/svg2.jpg" alt="Graduation cap" />
-          </div>
-      </div>
-        
+        <h1 class="page-title">Gestion des Comptes Étudiants</h1>
         <div class="search-filter-container">
           <div class="search-box">
             <input type="text" placeholder="Rechercher..." [(ngModel)]="searchQuery" (input)="updateTable()">

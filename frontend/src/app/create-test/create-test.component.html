@@ -1,10 +1,238 @@
 <div class="page-container">
-    <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
-   
-    <div class="content-frame" [class.collapsed]="sidebarCollapsed">
-      <div class="login-container">
+  <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
 
+  <div class="content-frame" [class.collapsed]="sidebarCollapsed">
+    <div class="login-container">
+      <h1 class="page-title">Gestion des Tests</h1>
+      
+      <div class="search-filter-container">
+        <div class="search-box">
+          <input type="text" placeholder="Rechercher un test..." [(ngModel)]="searchTerm">
+          <button class="search-button"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="action-buttons">
+          <button class="action-button create" (click)="openTestForm()">
+            <i class="fas fa-plus"></i> Créer un test
+          </button>         
+        </div>
+      </div>
+
+      <div class="tests-grid">
+        <div *ngFor="let test of filteredTests" class="test-card">
+          <div class="card-left">
+            <div class="test-header">
+              <span class="test-formation">{{ test.formation }}</span>
+              <h3 class="test-title">{{ test.title }}</h3>
+              <p class="test-info">{{ test.questions.length }} questions</p>
+            </div>
+            
+            <div class="test-dates">
+              <div class="date-item">
+                <span class="date-label">Créé le:</span>
+                <span>{{ test.dateCreation | date:'dd/MM/yyyy' }}</span>
+              </div>
+              <div class="date-item">
+                <span class="date-label">Fin le:</span>
+                <span>{{ test.dateFin | date:'dd/MM/yyyy' }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-right">
+            <button class="card-button view" (click)="viewTest(test)">
+              <i class="fas fa-eye"></i> Voir le test
+            </button>
+            <button class="card-button delete" (click)="deleteTest(test)">
+              <i class="fas fa-trash"></i> Supprimer
+            </button>
+          </div>
+          
+          <div class="card-actions">
+            <button class="action-icon view" (click)="viewTest(test)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="action-icon delete" (click)="deleteTest(test)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-</div>
+  </div>
 
+  <!-- Modal de création/modification de test -->
+  <div class="modal-overlay" *ngIf="showTestForm">
+    <div class="modal">
+      <h3>{{ editMode ? 'Modifier' : 'Créer' }} un test</h3>
+      
+      <form (ngSubmit)="submitTestForm()">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Titre du test:</label>
+            <input type="text" [(ngModel)]="currentTest.title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label>Formation associée:</label>
+            <select [(ngModel)]="currentTest.formation" name="formation" required>
+              <option value="">Sélectionner une formation</option>
+              <option *ngFor="let formation of availableFormations" [value]="formation">
+                {{ formation }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date de création:</label>
+            <input type="date" [(ngModel)]="currentTest.dateCreation" name="dateCreation" required>
+          </div>
+          <div class="form-group">
+            <label>Date de fin:</label>
+            <input type="date" [(ngModel)]="currentTest.dateFin" name="dateFin" required>
+          </div>
+        </div>
+
+        <!-- Section des questions -->
+        <div class="questions-section">
+          <div class="questions-header">
+            <h4 style="color: #000; margin: 0;">Questions ({{ currentTest.questions.length }})</h4>
+            <button type="button" class="add-question-btn" (click)="addQuestion()">
+              <i class="fas fa-plus"></i> Ajouter une question
+            </button>
+          </div>
+
+          <div *ngFor="let question of currentTest.questions; let i = index" class="question-item">
+            <div class="question-header">
+              <span class="question-number">Question {{ i + 1 }}</span>
+              <div class="question-actions">
+                <button type="button" class="question-action-btn delete" (click)="removeQuestion(i)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="question-text">
+              <input type="text" [(ngModel)]="question.text" [name]="'question_' + i" 
+                     placeholder="Entrez votre question..." required>
+            </div>
+
+            <div class="choices-container">
+              <div *ngFor="let choice of question.choices; let j = index" class="choice-item">
+                <input type="radio" [name]="'correct_' + i" 
+                       [checked]="question.correctAnswer === j"
+                       (change)="setCorrectAnswer(i, j)">
+                <input type="text" [(ngModel)]="choice.text" 
+                       [name]="'choice_' + i + '_' + j"
+                       placeholder="Choix {{ j + 1 }}">
+                <div class="choice-actions">
+                  <button type="button" class="choice-action-btn add" 
+                          *ngIf="j === question.choices.length - 1 && question.choices.length < 5"
+                          (click)="addChoice(i)">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                  <button type="button" class="choice-action-btn remove" 
+                          *ngIf="question.choices.length > 3"
+                          (click)="removeChoice(i, j)">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="cancel" (click)="closeTestForm()">Annuler</button>
+          <button type="submit" class="confirm">{{ editMode ? 'Modifier' : 'Créer' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de visualisation du test -->
+  <div class="modal-overlay" *ngIf="showViewModal">
+    <div class="modal">
+      <h3>{{ viewingTest.title }}</h3>
+      
+      <div style="margin-bottom: 0px;">
+        <p style="color: #000; margin: 5px 0;"><strong>Formation:</strong> {{ viewingTest.formation }}</p>
+        <p style="color: #000; margin: 5px 0;"><strong>Date de création:</strong> {{ viewingTest.dateCreation | date:'dd/MM/yyyy' }}</p>
+        <p style="color: #000; margin: 5px 0;"><strong>Date de fin:</strong> {{ viewingTest.dateFin | date:'dd/MM/yyyy' }}</p>
+        <p style="color: #000; margin: 5px 0;"><strong>Nombre de questions:</strong> {{ viewingTest.questions.length }}</p>
+      </div>
+
+      <div class="questions-section">
+        <div *ngFor="let question of viewingTest.questions; let i = index" class="question-item">
+          <div class="question-header">
+            <span class="question-number">Question {{ i + 1 }}</span>
+            <div class="question-actions">
+              <button type="button" class="question-action-btn edit" (click)="editQuestion(i)">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button type="button" class="question-action-btn delete" (click)="deleteQuestionFromView(i)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="question-text" *ngIf="editingQuestionIndex !== i">
+            <p style="color: #000; font-weight: 600; margin: 8px 0;">{{ question.text }}</p>
+          </div>
+          
+          <div class="question-text" *ngIf="editingQuestionIndex === i">
+            <input type="text" [(ngModel)]="question.text" placeholder="Entrez votre question...">
+          </div>
+
+         <div class="choices-container" *ngIf="editingQuestionIndex !== i">
+          <div *ngFor="let choice of question.choices; let j = index" class="choice-item">
+            <span [style.color]="question.correctAnswer === j ? '#28a745' : '#000'" 
+                  [style.fontWeight]="question.correctAnswer === j ? 'bold' : 'normal'">
+              {{ j + 1 }}. {{ choice.text }}
+              <i class="fas fa-check" *ngIf="question.correctAnswer === j" 
+                style="color: #28a745; margin-left: 5px;"></i>
+            </span>
+          </div>
+        </div>
+          <div class="choices-container" *ngIf="editingQuestionIndex === i">
+            <div *ngFor="let choice of question.choices; let j = index" class="choice-item">
+              <input type="radio" [name]="'correct_edit_' + i" 
+                     [checked]="question.correctAnswer === j"
+                     (change)="setCorrectAnswerInView(i, j)">
+              <input type="text" [(ngModel)]="choice.text" placeholder="Choix {{ j + 1 }}">
+              <div class="choice-actions">
+                <button type="button" class="choice-action-btn add" 
+                        *ngIf="j === question.choices.length - 1 && question.choices.length < 5"
+                        (click)="addChoiceInView(i)">
+                  <i class="fas fa-plus"></i>
+                </button>
+                <button type="button" class="choice-action-btn remove" 
+                        *ngIf="question.choices.length > 3"
+                        (click)="removeChoiceInView(i, j)">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div style="margin-top: 10x;">
+              <button type="button" class="choice-action-btn add" style="margin-right: 5px;" (click)="saveQuestionEdit(i)">
+                <i class="fas fa-check"></i> Sauvegarder
+              </button>
+              <button type="button" class="choice-action-btn remove" (click)="cancelQuestionEdit()">
+                <i class="fas fa-times"></i> Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <button type="button" class="add-question-btn" (click)="addQuestionToView()" style="margin-top: 15px;">
+          <i class="fas fa-plus"></i> Ajouter une question
+        </button>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="cancel" (click)="closeViewModal()">Annuler</button>
+        <button type="button" class="confirm" (click)="saveTestModifications()">Enregistrer les modifications</button>
+      </div>
+    </div>
+  </div>
+</div>

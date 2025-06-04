@@ -1,0 +1,99 @@
+<div class="course-detail-container" *ngIf="course">
+    <div class="course-header">
+      <div class="course-info">
+        <h1 class="course-title">{{ course.title }}</h1>
+        <p class="course-tagline">{{ course.tagline }}</p>
+        
+        <div class="course-description" [innerHTML]="course.description"></div>
+        
+        <p class="featuring-text">Featuring faculty from:</p>
+        <div class="school-logo">
+          <img *ngIf="course.school.includes('Harvard Faculty of Arts')" 
+               src="assets/harvard-fas-logo.png" 
+               alt="Harvard Faculty of Arts and Sciences Logo">
+          <img *ngIf="course.school.includes('Harvard Business School')" 
+               src="assets/harvard-business-logo.png" 
+               alt="Harvard Business School Logo">
+        </div>
+        
+        <div class="action-buttons">
+          <button class="btn-apply" (click)="applyNow()">APPLY NOW</button>
+          <button class="btn-enroll" (click)="enrollGroup()">ENROLL A GROUP</button>
+        </div>
+      </div>
+      
+      <div class="course-video">
+        <div class="video-container">
+          <img [src]="course.imageUrl" alt="{{ course.title }}" class="course-image">
+          <div class="play-button">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="36" r="35" stroke="white" stroke-width="2"/>
+              <path d="M48 36L30 47.1244L30 24.8756L48 36Z" fill="white"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="course-details">
+      <div class="details-columns">
+        <!-- May 2025 Column -->
+        <div class="detail-column" *ngIf="mayOfferDetails">
+          <h2 class="month-title">{{ mayOfferDetails.month }}</h2>
+          
+          <div class="detail-item">
+            <h3>Length:</h3>
+            <p>{{ mayOfferDetails.length }}</p>
+            <p>{{ mayOfferDetails.hours }}</p>
+          </div>
+          
+          <div class="detail-item">
+            <h3>Certificate Price:</h3>
+            <p>{{ mayOfferDetails.price }}</p>
+            <p class="discount-text">See discounts available below</p>
+          </div>
+          
+          <div class="detail-item">
+            <h3>Program Dates:</h3>
+            <p>{{ mayOfferDetails.dates }}</p>
+          </div>
+          
+          <div class="detail-item">
+            <h3>Applications Close:</h3>
+            <p>{{ mayOfferDetails.applicationClose }}</p>
+          </div>
+        </div>
+        
+        <!-- August 2025 Column -->
+        <div class="detail-column" *ngIf="augustOfferDetails">
+          <h2 class="month-title">{{ augustOfferDetails.month }}</h2>
+          
+          <div class="detail-item">
+            <h3>Length:</h3>
+            <p>{{ augustOfferDetails.length }}</p>
+            <p>{{ augustOfferDetails.hours }}</p>
+          </div>
+          
+          <div class="detail-item">
+            <h3>Certificate Price:</h3>
+            <p>{{ augustOfferDetails.price }}</p>
+            <p class="discount-text">See discounts available below</p>
+          </div>
+          
+          <div class="detail-item">
+            <h3>Program Dates:</h3>
+            <p>{{ augustOfferDetails.dates }}</p>
+          </div>
+          
+          <div class="detail-item">
+            <h3>Applications Close:</h3>
+            <p>{{ augustOfferDetails.applicationClose }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="back-button">
+      <button (click)="goBack()">← Back to courses</button>
+    </div>
+  </div>

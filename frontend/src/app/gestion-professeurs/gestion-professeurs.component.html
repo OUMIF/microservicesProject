@@ -4,15 +4,7 @@
   <div class="content-frame" [class.collapsed]="sidebarCollapsed">
     <div class="login-container">
       
-      <div class="welcome-container">
-        <div class="welcome-text">
-            <h1>Gestion des Comptes Professeurs</h1>
-            <p>Créez, gérez et suivez les profils des professeurs afin de garantir une organisation fluide et centralisée du corps enseignant.</p>
-        </div>
-        <div class="welcome-icon">
-            <img src="assets/svg2.jpg" alt="Professor icon" />
-        </div>
-    </div>
+      <h1 class="page-title">Gestion des Comptes Professeurs</h1>
       
       <div class="search-filter-container">
         <div class="search-box">
@@ -214,21 +206,61 @@
           <option *ngFor="let dept of departments" [value]="dept">{{dept}}</option>
         </select>
       </div>
+    
       <div class="form-group">
         <label>Filières:</label>
-        <select [(ngModel)]="currentProfessor.programs" name="programs" multiple>
-          <option *ngFor="let program of programs" [value]="program">{{program}}</option>
-        </select>
+        <div class="custom-multiselect">
+          <div class="select-box" (click)="toggleDropdown('programs')">
+            <div class="selected-items">
+              <span class="selected-item" *ngFor="let program of currentProfessor.programs">
+                {{program}}
+                <span class="remove-item" (click)="removeItem($event, program, 'programs')">×</span>
+              </span>
+              <span class="placeholder" *ngIf="!currentProfessor.programs.length">Sélectionner...</span>
+            </div>
+            <div class="dropdown-arrow">▼</div>
+          </div>
+          <div class="options-container" *ngIf="showProgramsDropdown">
+            <div class="option" *ngFor="let program of programs">
+              <label>
+                <input type="checkbox" 
+                  [checked]="currentProfessor.programs.includes(program)"
+                  (change)="toggleSelection(program, 'programs')">
+                {{program}}
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
+
     <div class="form-group single-row">
       <label>Modules enseignés:</label>
-      <select [(ngModel)]="currentProfessor.modules" name="modules" multiple>
-        <option *ngFor="let module of allModules" [value]="module">{{module}}</option>
-      </select>
+      <div class="custom-multiselect">
+        <div class="select-box" (click)="toggleDropdown('modules')">
+          <div class="selected-items">
+            <span class="selected-item" *ngFor="let module of currentProfessor.modules">
+              {{module}}
+              <span class="remove-item" (click)="removeItem($event, module, 'modules')">×</span>
+            </span>
+            <span class="placeholder" *ngIf="!currentProfessor.modules.length">Sélectionner...</span>
+          </div>
+          <div class="dropdown-arrow">▼</div>
+        </div>
+        <div class="options-container" *ngIf="showModulesDropdown">
+          <div class="option" *ngFor="let module of allModules">
+            <label>
+              <input type="checkbox" 
+                [checked]="currentProfessor.modules.includes(module)"
+                (change)="toggleSelection(module, 'modules')">
+              {{module}}
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
-    
+
+
     <div class="form-actions">
       <button type="button" (click)="showProfessorForm = false">Annuler</button>
       <button type="submit">{{editMode ? 'Modifier' : 'Créer'}}</button>

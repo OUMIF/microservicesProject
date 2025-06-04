@@ -63,7 +63,7 @@ export class WelcomeComponent {
             this.router.navigate(['/prof']);
           } else if (this.authService.isEtudiant()) {
             console.log('Navigating to etudiant dashboard');
-            this.router.navigate(['/etudiant']);
+            this.router.navigate(['/accueil-etudiant']);
           } else {
             console.log('No matching role found');
             this.loginError = 'No valid role assigned to this account';
