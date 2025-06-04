@@ -552,9 +552,9 @@ h6,.h6 {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', fantasy;
     font-weight: 100;
     font-size: 1.15rem;
-    font-weight: 550;
+    font-weight: 500;
     letter-spacing: 0rem;
-    color: #414040;
+    color: rgb(68, 67, 67);
 }
 
 .content-type--course.node-view-mode--teaser .inner-wrapper .show-on-hover .node-link span {
