@@ -61,6 +61,24 @@ if (isMainModule(import.meta.url)) {
 }
 
 /**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
+ * The request handler used by Angular CLI (dev-server and during build).
  */
 export const reqHandler = createNodeRequestHandler(app);
+
+/**
+ * Prerender parameters for dynamic routes
+ */
+export async function getPrerenderParams() {
+  return {
+    '/test/:id': [
+      { id: '1' },
+      { id: '2' },
+      { id: '3' }
+    ],
+    '/formation-test/:id': [
+      { id: '10' },
+      { id: '20' },
+      { id: '30' }
+    ]
+  };
+}

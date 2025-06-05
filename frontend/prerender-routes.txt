@@ -1,0 +1,10 @@
+/
+/accueil
+/welcome
+/login
+/register
+/gestion-etudiants
+/gestion-professeurs
+/accueil-etudiant
+/create-formation
+/create-test
