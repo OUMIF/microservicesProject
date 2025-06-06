@@ -1,0 +1,66 @@
+services:
+  # Base de données SQL Server
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - backend-network
+
+  # Service utilisateur
+  userservice:
+    build:
+      context: ./service/UserService
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=UserServiceDB;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;
+    depends_on:
+      - sqlserver
+    networks:
+      - backend-network
+    ports:
+      - "5001:80"
+
+  # API Gateway
+  apigateway:
+    build:
+      context: ./service/ApiGateway
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Services__UserService__BaseUrl=http://userservice:80
+    depends_on:
+      - userservice
+    networks:
+      - backend-network
+      - frontend-network
+    ports:
+      - "5000:80"
+
+  # Frontend Angular
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - apigateway
+    networks:
+      - frontend-network
+
+networks:
+  backend-network:
+    driver: bridge
+  frontend-network:
+    driver: bridge
+
+volumes:
+  sqlserver_data:
