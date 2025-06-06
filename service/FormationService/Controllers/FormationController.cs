@@ -12,7 +12,7 @@ namespace FormationService.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin")] // Cette ligne restreint l'accès à tous les endpoints aux administrateurs
+    //[Authorize(Roles = "Admin")] // Cette ligne restreint l'accès à tous les endpoints aux administrateurs
     public class FormationController : ControllerBase
     {
         private readonly IFormationService _formationService;

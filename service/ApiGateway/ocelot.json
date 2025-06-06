@@ -22,11 +22,7 @@
         }
       ],
       "UpstreamPathTemplate": "/admin/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/Formation",
@@ -38,11 +34,7 @@
         }
       ],
       "UpstreamPathTemplate": "/formations",
-      "UpstreamHttpMethod": [ "GET" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET" ]
     },
     {
       "DownstreamPathTemplate": "/api/Formation/{id}",
@@ -54,11 +46,7 @@
         }
       ],
       "UpstreamPathTemplate": "/formations/{id}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/Formation",
@@ -70,11 +58,7 @@
         }
       ],
       "UpstreamPathTemplate": "/formations",
-      "UpstreamHttpMethod": [ "POST" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Filiere",
@@ -86,11 +70,7 @@
         }
       ],
       "UpstreamPathTemplate": "/filieres",
-      "UpstreamHttpMethod": [ "GET" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET" ]
     },
     {
       "DownstreamPathTemplate": "/api/Filiere/{id}",
@@ -102,11 +82,7 @@
         }
       ],
       "UpstreamPathTemplate": "/filieres/{id}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/Filiere",
@@ -118,11 +94,7 @@
         }
       ],
       "UpstreamPathTemplate": "/filieres",
-      "UpstreamHttpMethod": [ "POST" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Filiere/professors",
@@ -134,11 +106,7 @@
         }
       ],
       "UpstreamPathTemplate": "/filieres/professors",
-      "UpstreamHttpMethod": [ "POST" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Filiere/professors/{filiereId}/{professorId}",
@@ -150,11 +118,7 @@
         }
       ],
       "UpstreamPathTemplate": "/filieres/professors/{filiereId}/{professorId}",
-      "UpstreamHttpMethod": [ "DELETE" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/Filiere/professors/{filiereId}",
@@ -166,11 +130,7 @@
         }
       ],
       "UpstreamPathTemplate": "/filieres/professors/{filiereId}",
-      "UpstreamHttpMethod": [ "GET" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET" ]
     },
     {
       "DownstreamPathTemplate": "/api/Filiere/students",
@@ -182,11 +142,7 @@
         }
       ],
       "UpstreamPathTemplate": "/filieres/students",
-      "UpstreamHttpMethod": [ "POST" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/Filiere/students/{filiereId}/{studentId}",
@@ -198,11 +154,7 @@
         }
       ],
       "UpstreamPathTemplate": "/filieres/students/{filiereId}/{studentId}",
-      "UpstreamHttpMethod": [ "DELETE" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/Filiere/students/{filiereId}",
@@ -214,11 +166,7 @@
         }
       ],
       "UpstreamPathTemplate": "/filieres/students/{filiereId}",
-      "UpstreamHttpMethod": [ "GET" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET" ]
     },
     {
       "DownstreamPathTemplate": "/api/Filiere/byFormation/{formationId}",
@@ -230,11 +178,7 @@
         }
       ],
       "UpstreamPathTemplate": "/filieres/byFormation/{formationId}",
-      "UpstreamHttpMethod": [ "GET" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET" ]
     }
   ],
   "GlobalConfiguration": {

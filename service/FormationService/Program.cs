@@ -5,7 +5,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using FormationService.Data;
 using FormationService.Interface;
-using FormationService.Services; // Make sure this import is correct
+using FormationService.Services;
 
 namespace FormationService
 {
@@ -28,7 +28,7 @@ namespace FormationService
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Formation Service API", Version = "v1" });
 
                 // JWT Authentication for Swagger
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                /*c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
                     Name = "Authorization",
@@ -51,6 +51,7 @@ namespace FormationService
                         Array.Empty<string>()
                     }
                 });
+                */
             });
 
             // Database context
@@ -58,7 +59,7 @@ namespace FormationService
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // JWT Authentication Configuration
-            builder.Services.AddAuthentication(options =>
+            /*builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -77,7 +78,38 @@ namespace FormationService
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero
                 };
+
+                // Add debugging events
+                options.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context =>
+                    {
+                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+                        logger.LogError($"FormationService - Authentication failed: {context.Exception.Message}");
+                        return Task.CompletedTask;
+                    },
+                    OnTokenValidated = context =>
+                    {
+                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+                        logger.LogInformation("FormationService - Token validated successfully");
+                        return Task.CompletedTask;
+                    },
+                    OnMessageReceived = context =>
+                    {
+                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+                        var hasAuth = context.HttpContext.Request.Headers.ContainsKey("Authorization");
+                        logger.LogInformation($"FormationService - Token received. Has Auth Header: {hasAuth}");
+                        return Task.CompletedTask;
+                    },
+                    OnChallenge = context =>
+                    {
+                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+                        logger.LogWarning($"FormationService - Authentication challenge: {context.Error}, {context.ErrorDescription}");
+                        return Task.CompletedTask;
+                    }
+                };
             });
+            */
 
             // Dependency Injection for Services
             builder.Services.AddScoped<IFormationService, Services.FormationService>();
@@ -100,9 +132,21 @@ namespace FormationService
 
             app.UseHttpsRedirection();
 
+            /// Middleware de debug (optionnel)
+            app.Use(async (context, next) =>
+            {
+                var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+                
+                logger.LogInformation($"FormationService - Request: {context.Request.Method} {context.Request.Path}");
+                
+                await next();
+                
+                logger.LogInformation($"FormationService - Response Status: {context.Response.StatusCode}");
+            });
+
             // Authentication must come before Authorization
-            app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseAuthentication();
+            //app.UseAuthorization();
 
             app.MapControllers();
 
