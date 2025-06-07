@@ -97,9 +97,31 @@ html, body {
   }
   
   #nav-title {
-    font-size: 1.15rem;
-    transition: opacity 1s;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: white;
   }
+
+  #nav-title span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    letter-spacing: 0;
+    word-spacing: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  #nav-title i {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    vertical-align: middle;
+  }
+
+
   
   label[for=nav-toggle] {
     position: absolute;

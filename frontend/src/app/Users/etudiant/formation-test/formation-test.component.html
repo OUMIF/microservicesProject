@@ -1,25 +1,80 @@
-<div class="course-detail-container" *ngIf="course">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Header Harvard Online -->
+<header class="main-header">
+  <div class="logo-container">
+    <a class="site-logo" routerLink="/welcome">
+      EduF<i class="fas fa-graduation-cap logo-icon"></i>rma
+    </a>
+  </div>
+  
+  <div class="secondary-nav">
+    <ul>
+      <li class="nav-icons">
+        <!-- Notifications -->
+        <div class="notification-container" (mouseenter)="showNotifications = true" (mouseleave)="showNotifications = false">
+          <a href="#" class="nav-icon" (click)="$event.preventDefault()">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge" *ngIf="unreadNotificationsCount > 0">{{ unreadNotificationsCount }}</span>
+          </a>
+          
+          <div class="notification-dropdown" *ngIf="showNotifications">
+            <div class="notification-header">
+              <h4>Notifications ({{ notifications.length }})</h4>
+            </div>
+            <div class="notification-list">
+              <div *ngFor="let notif of notifications; let i = index" 
+                  class="notification-item" 
+                  [class.unread]="!notif.read"
+                  (click)="markAsRead(i)">
+                <div class="notification-content">
+                  <h5>{{ notif.title }}</h5>
+                  <p>{{ notif.message }}</p>
+                  <small>{{ notif.date }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Historique -->
+        <div class="history-container" (mouseenter)="showHistory = true" (mouseleave)="showHistory = false">
+          <a href="#" class="nav-icon" (click)="$event.preventDefault()">
+            <i class="fas fa-history"></i>
+          </a>
+
+          <div class="history-dropdown" *ngIf="showHistory">
+            <div class="history-header">
+              <h4>Historique des Tests</h4>
+            </div>
+            <div class="history-list">
+              <div *ngFor="let test of testHistory" class="history-item" (click)="navigateToTest(test.id)">
+                <div class="test-info">
+                  <h5>{{ test.title }}</h5>
+                  <p>Score: {{ test.score }} - {{ test.date }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profil -->
+        <a class="nav-icon" (click)="openAccountModal()">
+          <i class="fas fa-user"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<!-- Contenu principal -->
+<main>
+  <div class="course-detail-container" *ngIf="course">
     <div class="course-header">
       <div class="course-info">
         <h1 class="course-title">{{ course.title }}</h1>
-        <p class="course-tagline">{{ course.tagline }}</p>
-        
-        <div class="course-description" [innerHTML]="course.description"></div>
-        
-        <p class="featuring-text">Featuring faculty from:</p>
-        <div class="school-logo">
-          <img *ngIf="course.school.includes('Harvard Faculty of Arts')" 
-               src="assets/harvard-fas-logo.png" 
-               alt="Harvard Faculty of Arts and Sciences Logo">
-          <img *ngIf="course.school.includes('Harvard Business School')" 
-               src="assets/harvard-business-logo.png" 
-               alt="Harvard Business School Logo">
-        </div>
-        
-        <div class="action-buttons">
-          <button class="btn-apply" (click)="applyNow()">APPLY NOW</button>
-          <button class="btn-enroll" (click)="enrollGroup()">ENROLL A GROUP</button>
-        </div>
+        <p class="course-tagline">{{ course.tagline }}</p>        
+        <div class="course-description" [innerHTML]="course.description"></div>                       
       </div>
       
       <div class="course-video">
@@ -34,60 +89,37 @@
         </div>
       </div>
     </div>
-  
+    
     <div class="course-details">
-      <div class="details-columns">
-        <!-- May 2025 Column -->
-        <div class="detail-column" *ngIf="mayOfferDetails">
-          <h2 class="month-title">{{ mayOfferDetails.month }}</h2>
-          
-          <div class="detail-item">
-            <h3>Length:</h3>
-            <p>{{ mayOfferDetails.length }}</p>
-            <p>{{ mayOfferDetails.hours }}</p>
-          </div>
-          
-          <div class="detail-item">
-            <h3>Certificate Price:</h3>
-            <p>{{ mayOfferDetails.price }}</p>
-            <p class="discount-text">See discounts available below</p>
-          </div>
-          
-          <div class="detail-item">
-            <h3>Program Dates:</h3>
-            <p>{{ mayOfferDetails.dates }}</p>
-          </div>
-          
-          <div class="detail-item">
-            <h3>Applications Close:</h3>
-            <p>{{ mayOfferDetails.applicationClose }}</p>
-          </div>
-        </div>
-        
-        <!-- August 2025 Column -->
+      <div class="details-columns">        
         <div class="detail-column" *ngIf="augustOfferDetails">
-          <h2 class="month-title">{{ augustOfferDetails.month }}</h2>
-          
-          <div class="detail-item">
-            <h3>Length:</h3>
-            <p>{{ augustOfferDetails.length }}</p>
-            <p>{{ augustOfferDetails.hours }}</p>
+          <h2 class="evaluation-title">Test d'évaluation de la formation</h2>
+          <div class="evaluation-description">
+            <p>Ce test vous permettra d'évaluer vos connaissances sur le sujet et de valoriser cette formation.</p>
           </div>
           
-          <div class="detail-item">
-            <h3>Certificate Price:</h3>
-            <p>{{ augustOfferDetails.price }}</p>
-            <p class="discount-text">See discounts available below</p>
+          <div class="evaluation-questions">
+            <div *ngFor="let question of evaluationQuestions; let i = index" class="question-item">
+              <h3 class="question-text">{{ i + 1 }}. {{ question.text }}</h3>
+              
+              <div class="choices-container">
+                <div *ngFor="let choice of question.choices; let j = index" class="choice-item">
+                  <label class="choice-label">
+                    <input type="radio"
+                           [name]="'question_' + i"
+                           [value]="j"
+                           [(ngModel)]="question.selectedAnswer"
+                           class="choice-radio">
+                    <span class="custom-radio"></span>
+                    {{ choice.text }}
+                  </label>
+                </div>
+              </div>
+            </div>
           </div>
           
-          <div class="detail-item">
-            <h3>Program Dates:</h3>
-            <p>{{ augustOfferDetails.dates }}</p>
-          </div>
-          
-          <div class="detail-item">
-            <h3>Applications Close:</h3>
-            <p>{{ augustOfferDetails.applicationClose }}</p>
+          <div class="evaluation-actions">
+            <button class="btn-submit" (click)="submitEvaluation()">Soumettre l'évaluation</button>
           </div>
         </div>
       </div>
@@ -97,3 +129,112 @@
       <button (click)="goBack()">← Back to courses</button>
     </div>
   </div>
+</main>
+
+<hr class="footer-divider">
+
+<!-- Footer -->
+<footer class="footer-section">
+  <div class="footer-container">
+    <!-- Logo et marque -->
+    <div class="footer-brand">
+      <div class="logo-container">
+        <a class="site-logo" routerLink="/welcome">
+          EduF<i class="fas fa-graduation-cap logo-icon"></i>rma
+        </a>
+      </div>
+    </div>
+    
+    <!-- Formulaire de contact -->
+    <div class="footer-contact">
+      <h2>Avez-vous des questions?</h2>
+      <p>N'hésitez pas à nous contacter</p>
+      <form class="contact-form">
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Message">
+        <button type="submit">ENVOYER</button>
+      </form>
+    </div>
+    
+    <!-- Réseaux sociaux -->
+    <div class="footer-social">
+      <h3>Contactez-nous</h3>
+      <div class="social-icons">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal Account -->
+<div class="modal-overlay" *ngIf="showAccountModal">
+  <div class="modal">
+    <div class="profile-content">
+      <!-- Section Photo avec upload -->
+      <div class="photo-upload-section">
+        <div class="avatar-container" (click)="fileInput.click()">
+          <div *ngIf="!currentStudent.photo" class="avatar-initials">
+            {{ getInitials() }}
+          </div>
+          <img *ngIf="currentStudent.photo" [src]="currentStudent.photo" class="avatar-image">
+          <input #fileInput type="file" hidden (change)="onFileSelected($event)">
+        </div>
+        <button class="upload-button" (click)="fileInput.click()">Changer la photo</button>
+      </div>
+
+      <form>
+        <div class="form-row">
+          <div class="form-group">
+            <label>CNE:</label>
+            <input type="text" [value]="currentStudent.cne" readonly>
+          </div>
+          <div class="form-group">
+            <label>Nom:</label>
+            <input type="text" [value]="currentStudent.lastName" readonly>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom:</label>
+            <input type="text" [value]="currentStudent.firstName" readonly>
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="email" [value]="currentStudent.email" readonly>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date de naissance:</label>
+            <input type="text" [value]="currentStudent.birthDate | date:'dd/MM/yyyy'" readonly>
+          </div>
+          <div class="form-group">
+            <label>Lieu de naissance:</label>
+            <input type="text" [value]="currentStudent.birthPlace" readonly>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Filière:</label>
+            <input type="text" [value]="currentStudent.program" readonly>
+          </div>
+          <div class="form-group">
+            <label>Année d'étude:</label>
+            <input type="text" [value]="currentStudent.studyYear" readonly>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="close-button" (click)="closeAccountModal()">Fermer</button>
+    </div>
+  </div>
+</div>

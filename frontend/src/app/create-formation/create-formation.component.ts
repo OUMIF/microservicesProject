@@ -31,7 +31,7 @@ interface Formation {
   styleUrl: './create-formation.component.css'
 })
 export class CreateFormationComponent {
-   sidebarCollapsed = false;
+  sidebarCollapsed = false;
   onSidebarToggled(isCollapsed: boolean) {
     this.sidebarCollapsed = isCollapsed;
   }
@@ -49,10 +49,17 @@ export class CreateFormationComponent {
     programDates: ''
   };
 
-  // Adding the missing availableFilieres property
+  // Propriétés pour la modal de confirmation
+  showConfirmationModal = false;
+  confirmationData = {
+    title: '',
+    message: '',
+    type: 'delete' as 'delete' | 'warning' | 'info',
+    onConfirm: () => {}
+  };
+
   availableFilieres: string[] = ['Business', 'Informatique', 'Marketing', 'Finance', 'Management'];
 
-  // Professor list
   availableProfesseurs: Professor[] = [
     {
       id: '1',
@@ -76,7 +83,7 @@ export class CreateFormationComponent {
       sujet: 'Are you prepared for our data-driven world?',
       description: '<p>Data Science Principles gives you an overview of data science with a code- and math-free introduction to prediction, causality, data wrangling, privacy, and ethics.</p>',
       imageUrl: 'assets/1.jpg',
-      filieres: ['Business'], // Fixed: Changed from string to string array
+      filieres: ['Business'],
       Idformation: '1f5f67c1-45e8-451a-bda4-de4b2571571c',
       professeurs: [
         {
@@ -94,7 +101,7 @@ export class CreateFormationComponent {
       sujet: 'Are you prepared for our data-driven world?',
       description: '<p>Data Science Principles gives you an overview of data science with a code- and math-free introduction to prediction, causality, data wrangling, privacy, and ethics.</p>',
       imageUrl: 'assets/2.jpg',
-      filieres: ['Business'], // Fixed: Changed from string to string array
+      filieres: ['Business'],
       Idformation: '2f5f67c1-45e8-451a-bda4-de4b2571571c',
       professeurs: [
         {
@@ -106,80 +113,30 @@ export class CreateFormationComponent {
         }
       ],
       programDates: '2025-07-01 to 2025-09-30'
-    },
-    {
-      title: 'Data Science Principles',
-      sujet: 'Are you prepared for our data-driven world?',
-      description: '<p>Data Science Principles gives you an overview of data science with a code- and math-free introduction to prediction, causality, data wrangling, privacy, and ethics.</p>',
-      imageUrl: 'assets/3.jpg',
-      filieres: ['Business'], // Fixed: Changed from string to string array
-      Idformation: '3f5f67c1-45e8-451a-bda4-de4b2571571c',
-      professeurs: [
-        {
-          id: '1',
-          name: "Dr. John Smith",
-          description_prof: "Professeur en Data Science avec 15 ans d'expérience",
-          photo: "assets/Malak.jpg",
-          filiere: 'Business'
-        }
-      ],
-      programDates: '2025-08-01 to 2025-10-31'
-    },
-    {
-      title: 'Data Science Principles',
-      sujet: 'Are you prepared for our data-driven world?',
-      description: '<p>Data Science Principles gives you an overview of data science with a code- and math-free introduction to prediction, causality, data wrangling, privacy, and ethics.</p>',
-      imageUrl: 'assets/4.jpg',
-      filieres: ['Business'], // Fixed: Changed from string to string array
-      Idformation: '4f5f67c1-45e8-451a-bda4-de4b2571571c',
-      professeurs: [
-        {
-          id: '1',
-          name: "Dr. John Smith",
-          description_prof: "Professeur en Data Science avec 15 ans d'expérience",
-          photo: "assets/Malak.jpg",
-          filiere: 'Business'
-        }
-      ],
-      programDates: '2025-09-01 to 2025-11-30'
-    },
-    {
-      title: 'Data Science Principles',
-      sujet: 'Are you prepared for our data-driven world?',
-      description: '<p>Data Science Principles gives you an overview of data science with a code- and math-free introduction to prediction, causality, data wrangling, privacy, and ethics.</p>',
-      imageUrl: 'assets/5.jpg',
-      filieres: ['Business'], // Fixed: Changed from string to string array
-      Idformation: '5f5f67c1-45e8-451a-bda4-de4b2571571c',
-      professeurs: [
-        {
-          id: '1',
-          name: "Dr. John Smith",
-          description_prof: "Professeur en Data Science avec 15 ans d'expérience",
-          photo: "assets/Malak.jpg",
-          filiere: 'Business'
-        }
-      ],
-      programDates: '2025-10-01 to 2025-12-31'
-    },
-    {
-      title: 'Data Science Principles',
-      sujet: 'Are you prepared for our data-driven world?',
-      description: '<p>Data Science Principles gives you an overview of data science with a code- and math-free introduction to prediction, causality, data wrangling, privacy, and ethics.</p>',
-      imageUrl: 'assets/2.jpg',
-      filieres: ['Business'], // Fixed: Changed from string to string array
-      Idformation: '6f5f67c1-45e8-451a-bda4-de4b2571571c',
-      professeurs: [
-        {
-          id: '1',
-          name: "Dr. John Smith",
-          description_prof: "Professeur en Data Science avec 15 ans d'expérience",
-          photo: "assets/Malak.jpg",
-          filiere: 'Business'
-        }
-      ],
-      programDates: '2025-11-01 to 2026-01-31'
     }
   ];
+
+  // Méthode pour ouvrir la modal de confirmation
+  openConfirmationModal(title: string, message: string, type: 'delete' | 'warning' | 'info', onConfirm: () => void) {
+    this.confirmationData = {
+      title,
+      message,
+      type,
+      onConfirm
+    };
+    this.showConfirmationModal = true;
+  }
+
+  // Méthode pour fermer la modal de confirmation
+  closeConfirmationModal() {
+    this.showConfirmationModal = false;
+  }
+
+  // Méthode pour confirmer l'action
+  confirmAction() {
+    this.confirmationData.onConfirm();
+    this.closeConfirmationModal();
+  }
 
   openCreationForm() {
     this.showFormationForm = true;
@@ -214,7 +171,6 @@ export class CreateFormationComponent {
   toggleProfessorSelection(prof: Professor) {
     const index = this.currentFormation.professeurs.findIndex(p => p.id === prof.id);
     if (index === -1) {
-      // Ajoute le professeur avec sa description prédéfinie
       this.currentFormation.professeurs.push({...prof});
     } else {
       this.currentFormation.professeurs.splice(index, 1);
@@ -226,18 +182,15 @@ export class CreateFormationComponent {
   }
 
   submitFormationForm() {
-    // Ajouter la logique de soumission ici
     console.log('Formation soumise:', this.currentFormation);
     console.log('Image sélectionnée:', this.selectedFile);
 
     this.selectedFile = null;
     this.selectedFileName = '';
     
-    // Add the new formation to the list if in creation mode
     if (!this.editMode) {
       this.formations.push({...this.currentFormation});
     } else {
-      // Update existing formation if in edit mode
       const index = this.formations.findIndex(f => f.Idformation === this.currentFormation.Idformation);
       if (index !== -1) {
         this.formations[index] = {...this.currentFormation};
@@ -251,11 +204,9 @@ export class CreateFormationComponent {
     this.showFormationForm = false;
   }
 
-  // Dropdown properties
   showFilieresDropdown = false;
   showProfesseursDropdown = false;
 
-  // Dropdown methods
   toggleDropdown(type: 'filieres' | 'professeurs') {
     if (type === 'filieres') {
       this.showFilieresDropdown = !this.showFilieresDropdown;
@@ -279,11 +230,8 @@ export class CreateFormationComponent {
     }
   }
 
-
-
   selectedFile: File | null = null;
   selectedFileName: string = '';
-
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -291,7 +239,6 @@ export class CreateFormationComponent {
       this.selectedFile = input.files[0];
       this.selectedFileName = this.selectedFile.name;
       
-      // Créer un URL temporaire pour l'aperçu de l'image
       const reader = new FileReader();
       reader.onload = () => {
         this.currentFormation.imageUrl = reader.result as string;
@@ -300,9 +247,6 @@ export class CreateFormationComponent {
     }
   }
 
-
-
-    // Ajoutez dans CreateTestComponent
   editFormation(formation: Formation) {
     this.currentFormation = { ...formation };
     this.showFormationForm = true;
@@ -310,12 +254,93 @@ export class CreateFormationComponent {
     this.selectedFileName = formation.imageUrl.split('/').pop() || '';
   }
 
+  // Méthode modifiée pour utiliser la modal de confirmation
   deleteFormation(formation: Formation) {
-    const confirmation = confirm('Êtes-vous sûr de vouloir supprimer cette formation ?');
-    if (confirmation) {
-      this.formations = this.formations.filter(f => f.Idformation !== formation.Idformation);
+    this.openConfirmationModal(
+      'Supprimer la formation',
+      `Êtes-vous sûr de vouloir supprimer la formation "${formation.title}" ? Cette action est irréversible.`,
+      'delete',
+      () => {
+        this.formations = this.formations.filter(f => f.Idformation !== formation.Idformation);
+      }
+    );
+  }
+
+  showAllProfessors: { [key: string]: boolean } = {};
+  showStudentsList: { [key: string]: boolean } = {};
+
+  studentsByFiliere: { [key: string]: any[] } = {
+    'Business': [
+      { id: '1', name: 'Ahmed Ben Ali', email: 'ahmed@example.com', filiere: 'Business' },
+      { id: '2', name: 'Sara Mansouri', email: 'sara@example.com', filiere: 'Business' },
+      { id: '3', name: 'Mohamed Khaled', email: 'mohamed@example.com', filiere: 'Business' }
+    ],
+    'Informatique': [
+      { id: '4', name: 'Youssef Tazi', email: 'youssef@example.com', filiere: 'Informatique' },
+      { id: '5', name: 'Laila Benali', email: 'laila@example.com', filiere: 'Informatique' }
+    ],
+    'Marketing': [
+      { id: '6', name: 'Karim El Fassi', email: 'karim@example.com', filiere: 'Marketing' }
+    ],
+    'Finance': [
+      { id: '7', name: 'Nadia Chakir', email: 'nadia@example.com', filiere: 'Finance' }
+    ],
+    'Management': [
+      { id: '8', name: 'Omar Bennani', email: 'omar@example.com', filiere: 'Management' }
+    ]
+  };
+
+  toggleProfessorsView(formationId: string) {
+    this.showAllProfessors[formationId] = !this.showAllProfessors[formationId];
+  }
+
+  selectedFormationId: string | null = null;
+
+  toggleStudentsList(formationId: string) {
+    this.selectedFormationId = this.selectedFormationId === formationId ? null : formationId;
+  }
+
+  getEtudiantsByFormationId(formationId: string) {
+    const formation = this.formations.find(f => f.Idformation === formationId);
+    if (!formation || !formation.filieres || formation.filieres.length === 0) {
+      return [];
+    }
+    
+    let allStudents: any[] = [];
+    formation.filieres.forEach(filiere => {
+      const studentsInFiliere = this.studentsByFiliere[filiere] || [];
+      allStudents = allStudents.concat(studentsInFiliere);
+    });
+    
+    return allStudents;
+  }
+
+  // Méthode modifiée pour utiliser la modal de confirmation
+  deleteStudent(studentId: string, formationId: string) {
+    const student = this.getEtudiantsByFormationId(formationId).find(s => s.id === studentId);
+    if (student) {
+      this.openConfirmationModal(
+        'Supprimer l\'étudiant',
+        `Êtes-vous sûr de vouloir supprimer l'étudiant "${student.name}" de cette formation ?`,
+        'delete',
+        () => {
+          const formation = this.formations.find(f => f.Idformation === formationId);
+          if (formation && formation.filieres) {
+            formation.filieres.forEach(filiere => { 
+              if (this.studentsByFiliere[filiere]) {
+                this.studentsByFiliere[filiere] = this.studentsByFiliere[filiere].filter(
+                  student => student.id !== studentId
+                );
+              }
+            });
+          }
+        }
+      );
     }
   }
 
-
+  getFormationTitle(formationId: string): string {
+    const formation = this.formations.find(f => f.Idformation === formationId);
+    return formation ? formation.title : '';
+  }
 }

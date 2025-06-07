@@ -11,7 +11,6 @@ interface Choice {
 interface Question {
   text: string;
   choices: Choice[];
-  correctAnswer: number;
 }
 
 interface Test {
@@ -37,6 +36,15 @@ export class CreateTestComponent {
   editMode = false;
   searchTerm = '';
   editingQuestionIndex = -1;
+
+  // Propriétés pour la modal de confirmation
+  showConfirmationModal = false;
+  confirmationData = {
+    title: '',
+    message: '',
+    type: 'delete' as 'delete' | 'warning' | 'info' | 'edit',
+    onConfirm: () => {}
+  };
 
   availableFormations: string[] = [
     'Data Science Principles',
@@ -68,78 +76,72 @@ export class CreateTestComponent {
   tests: Test[] = [
     {
       id: '1',
-      title: 'Test de validation Data Science',
+      title: 'Évaluation Data Science Avancée',
       formation: 'Data Science Principles',
       dateCreation: '2024-01-15',
       dateFin: '2024-02-15',
       questions: [
         {
-          text: 'Quelle est la première étape dans un projet de data science ?',
+          text: 'Décrivez les étapes principales d\'un projet de data science et leur importance.',
           choices: [
-            { text: 'Collecter les données' },
-            { text: 'Définir le problème' },
-            { text: 'Nettoyer les données' },
-            { text: 'Construire le modèle' }
-          ],
-          correctAnswer: 1
+            { text: 'Définition du problème' },
+            { text: 'Collection et nettoyage des données' },
+            { text: 'Analyse exploratoire' },
+            { text: 'Modélisation et validation' }
+          ]
         },
         {
-          text: 'Que signifie l\'acronyme ML ?',
+          text: 'Expliquez les différences entre l\'apprentissage supervisé et non supervisé.',
           choices: [
-            { text: 'Machine Learning' },
-            { text: 'Maximum Likelihood' },
-            { text: 'Multiple Linear' },
-            { text: 'Model Logic' }
-          ],
-          correctAnswer: 0
+            { text: 'Apprentissage supervisé avec données étiquetées' },
+            { text: 'Apprentissage non supervisé sans étiquettes' },
+            { text: 'Applications pratiques de chaque méthode' }
+          ]
         }
       ]
     },
     {
       id: '2',
-      title: 'Quiz Intelligence Artificielle Avancée',
+      title: 'Évaluation Intelligence Artificielle',
       formation: 'Intelligence Artificielle',
       dateCreation: '2024-01-20',
       dateFin: '2024-03-01',
       questions: [
         {
-          text: 'Quel type d\'IA peut apprendre sans supervision humaine ?',
+          text: 'Analysez les enjeux éthiques de l\'IA dans le recrutement.',
           choices: [
-            { text: 'Intelligence Artificielle Générale' },
-            { text: 'Apprentissage non supervisé' },
-            { text: 'Réseaux de neurones' },
-            { text: 'Algorithmes génétiques' }
-          ],
-          correctAnswer: 1
+            { text: 'Biais algorithmiques' },
+            { text: 'Transparence des décisions' },
+            { text: 'Impact sur l\'emploi' },
+            { text: 'Réglementation nécessaire' }
+          ]
         }
       ]
     },
     {
       id: '3',
-      title: 'Évaluation Machine Learning Fondamentaux',
+      title: 'Évaluation Machine Learning Pratique',
       formation: 'Machine Learning',
       dateCreation: '2024-01-25',
       dateFin: '2024-02-25',
       questions: [
         {
-          text: 'Quelle métrique est utilisée pour évaluer un modèle de classification ?',
+          text: 'Évaluez les métriques de performance pour un modèle de classification.',
           choices: [
-            { text: 'MSE (Mean Squared Error)' },
-            { text: 'Accuracy' },
-            { text: 'R-squared' },
-            { text: 'MAE (Mean Absolute Error)' }
-          ],
-          correctAnswer: 1
+            { text: 'Précision et rappel' },
+            { text: 'F1-score' },
+            { text: 'Matrice de confusion' },
+            { text: 'Courbe ROC' }
+          ]
         },
         {
-          text: 'Qu\'est-ce que l\'overfitting ?',
+          text: 'Proposez des solutions pour traiter le surapprentissage.',
           choices: [
-            { text: 'Quand le modèle est trop simple' },
-            { text: 'Quand le modèle mémorise les données d\'entraînement' },
-            { text: 'Quand le modèle ne converge pas' },
-            { text: 'Quand les données sont insuffisantes' }
-          ],
-          correctAnswer: 1
+            { text: 'Régularisation' },
+            { text: 'Validation croisée' },
+            { text: 'Augmentation des données' },
+            { text: 'Simplification du modèle' }
+          ]
         }
       ]
     }
@@ -157,6 +159,39 @@ export class CreateTestComponent {
 
   onSidebarToggled(collapsed: boolean): void {
     this.sidebarCollapsed = collapsed;
+  }
+
+  // Méthodes pour la modal de confirmation
+  openConfirmationModal(title: string, message: string, type: 'delete' | 'warning' | 'info' | 'edit', onConfirm: () => void) {
+    this.confirmationData = {
+      title,
+      message,
+      type,
+      onConfirm
+    };
+    this.showConfirmationModal = true;
+  }
+
+  closeConfirmationModal() {
+    this.showConfirmationModal = false;
+  }
+
+  confirmAction() {
+    this.confirmationData.onConfirm();
+    this.closeConfirmationModal();
+  }
+
+  getConfirmButtonText(): string {
+    switch (this.confirmationData.type) {
+      case 'delete':
+        return 'Supprimer';
+      case 'edit':
+        return 'Modifier';
+      case 'info':
+        return 'Enregistrer';
+      default:
+        return 'Confirmer';
+    }
   }
 
   // Test form management
@@ -219,18 +254,13 @@ export class CreateTestComponent {
       }
       
       if (question.choices.length < 2) {
-        alert(`La question ${i + 1} doit avoir au moins 2 choix.`);
+        alert(`La question ${i + 1} doit avoir au moins 2 options.`);
         return false;
       }
 
       const hasEmptyChoice = question.choices.some(choice => !choice.text.trim());
       if (hasEmptyChoice) {
-        alert(`Tous les choix de la question ${i + 1} doivent être remplis.`);
-        return false;
-      }
-
-      if (question.correctAnswer === undefined || question.correctAnswer < 0) {
-        alert(`Veuillez sélectionner la bonne réponse pour la question ${i + 1}.`);
+        alert(`Toutes les options de la question ${i + 1} doivent être remplies.`);
         return false;
       }
     }
@@ -244,14 +274,14 @@ export class CreateTestComponent {
       id: this.generateTestId()
     };
     this.tests.push(newTest);
-    alert('Test créé avec succès !');
+    alert('Test d\'évaluation créé avec succès !');
   }
 
   updateTest(): void {
     const index = this.tests.findIndex(test => test.id === this.currentTest.id);
     if (index !== -1) {
       this.tests[index] = { ...this.currentTest };
-      alert('Test modifié avec succès !');
+      alert('Test d\'évaluation modifié avec succès !');
     }
   }
 
@@ -265,18 +295,21 @@ export class CreateTestComponent {
       text: '',
       choices: [
         { text: '' },
-        { text: '' },
         { text: '' }
-      ],
-      correctAnswer: -1
+      ]
     };
     this.currentTest.questions.push(newQuestion);
   }
 
   removeQuestion(index: number): void {
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette question ?')) {
-      this.currentTest.questions.splice(index, 1);
-    }
+    this.openConfirmationModal(
+      'Supprimer la question',
+      `Êtes-vous sûr de vouloir supprimer la question ${index + 1} ? Cette action est irréversible.`,
+      'delete',
+      () => {
+        this.currentTest.questions.splice(index, 1);
+      }
+    );
   }
 
   addChoice(questionIndex: number): void {
@@ -287,19 +320,9 @@ export class CreateTestComponent {
 
   removeChoice(questionIndex: number, choiceIndex: number): void {
     const question = this.currentTest.questions[questionIndex];
-    if (question.choices.length > 3) {
+    if (question.choices.length > 2) {
       question.choices.splice(choiceIndex, 1);
-      // Adjust correct answer if necessary
-      if (question.correctAnswer === choiceIndex) {
-        question.correctAnswer = -1;
-      } else if (question.correctAnswer > choiceIndex) {
-        question.correctAnswer--;
-      }
     }
-  }
-
-  setCorrectAnswer(questionIndex: number, choiceIndex: number): void {
-    this.currentTest.questions[questionIndex].correctAnswer = choiceIndex;
   }
 
   // Test actions
@@ -309,13 +332,17 @@ export class CreateTestComponent {
   }
 
   deleteTest(test: Test): void {
-    if (confirm(`Êtes-vous sûr de vouloir supprimer le test "${test.title}" ?`)) {
-      const index = this.tests.findIndex(t => t.id === test.id);
-      if (index !== -1) {
-        this.tests.splice(index, 1);
-        alert('Test supprimé avec succès !');
+    this.openConfirmationModal(
+      'Supprimer le test',
+      `Êtes-vous sûr de vouloir supprimer le test "${test.title}" ? Cette action est irréversible.`,
+      'delete',
+      () => {
+        const index = this.tests.findIndex(t => t.id === test.id);
+        if (index !== -1) {
+          this.tests.splice(index, 1);
+        }
       }
-    }
+    );
   }
 
   // View modal management
@@ -347,23 +374,31 @@ export class CreateTestComponent {
 
     const hasEmptyChoice = question.choices.some(choice => !choice.text.trim());
     if (hasEmptyChoice) {
-      alert('Tous les choix doivent être remplis.');
+      alert('Toutes les options doivent être remplies.');
       return;
     }
 
-    if (question.correctAnswer === undefined || question.correctAnswer < 0) {
-      alert('Veuillez sélectionner la bonne réponse.');
-      return;
-    }
-
-    this.editingQuestionIndex = -1;
-    alert('Question modifiée avec succès !');
+    this.openConfirmationModal(
+      'Confirmer la modification',
+      'Êtes-vous sûr de vouloir sauvegarder les modifications de cette question ?',
+      'edit',
+      () => {
+        this.editingQuestionIndex = -1;
+      }
+    );
   }
 
+  
+
   deleteQuestionFromView(index: number): void {
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette question ?')) {
-      this.viewingTest.questions.splice(index, 1);
-    }
+    this.openConfirmationModal(
+      'Supprimer la question',
+      `Êtes-vous sûr de vouloir supprimer la question ${index + 1} ? Cette action est irréversible.`,
+      'delete',
+      () => {
+        this.viewingTest.questions.splice(index, 1);
+      }
+    );
   }
 
   addQuestionToView(): void {
@@ -371,10 +406,8 @@ export class CreateTestComponent {
       text: '',
       choices: [
         { text: '' },
-        { text: '' },
         { text: '' }
-      ],
-      correctAnswer: -1
+      ]
     };
     this.viewingTest.questions.push(newQuestion);
     this.editingQuestionIndex = this.viewingTest.questions.length - 1;
@@ -388,19 +421,9 @@ export class CreateTestComponent {
 
   removeChoiceInView(questionIndex: number, choiceIndex: number): void {
     const question = this.viewingTest.questions[questionIndex];
-    if (question.choices.length > 3) {
+    if (question.choices.length > 2) {
       question.choices.splice(choiceIndex, 1);
-      // Adjust correct answer if necessary
-      if (question.correctAnswer === choiceIndex) {
-        question.correctAnswer = -1;
-      } else if (question.correctAnswer > choiceIndex) {
-        question.correctAnswer--;
-      }
     }
-  }
-
-  setCorrectAnswerInView(questionIndex: number, choiceIndex: number): void {
-    this.viewingTest.questions[questionIndex].correctAnswer = choiceIndex;
   }
 
   saveTestModifications(): void {
@@ -414,22 +437,23 @@ export class CreateTestComponent {
       
       const hasEmptyChoice = question.choices.some(choice => !choice.text.trim());
       if (hasEmptyChoice) {
-        alert(`Tous les choix de la question ${i + 1} doivent être remplis.`);
-        return;
-      }
-
-      if (question.correctAnswer === undefined || question.correctAnswer < 0) {
-        alert(`Veuillez sélectionner la bonne réponse pour la question ${i + 1}.`);
+        alert(`Toutes les options de la question ${i + 1} doivent être remplies.`);
         return;
       }
     }
 
-    // Save modifications to the main tests array
-    const index = this.tests.findIndex(test => test.id === this.viewingTest.id);
-    if (index !== -1) {
-      this.tests[index] = JSON.parse(JSON.stringify(this.viewingTest));
-      alert('Modifications enregistrées avec succès !');
-      this.closeViewModal();
-    }
+    this.openConfirmationModal(
+      'Enregistrer les modifications',
+      'Êtes-vous sûr de vouloir enregistrer toutes les modifications apportées à ce test d\'évaluation ?',
+      'info',
+      () => {
+        // Save modifications to the main tests array
+        const index = this.tests.findIndex(test => test.id === this.viewingTest.id);
+        if (index !== -1) {
+          this.tests[index] = JSON.parse(JSON.stringify(this.viewingTest));
+          this.closeViewModal();
+        }
+      }
+    );
   }
 }
