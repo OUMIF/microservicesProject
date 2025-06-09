@@ -2,10 +2,10 @@
     <input type="checkbox" id="nav-toggle">
   
     <div id="nav-header">
-      <a id="nav-title" routerLink="/welcome" 
-      routerLinkActive="active" 
-      [routerLinkActiveOptions]="{exact: true}" target="_blank">
-        EduF<i class="fab fa-o"></i>rma
+      <a routerLink="/welcome" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" target="_blank">
+        <div id="nav-title">
+          <span>EduF<i class="fas fa-graduation-cap"></i>rma</span>
+        </div>
       </a>
       <label for="nav-toggle" (click)="toggleSidebar()">
         <span id="nav-toggle-burger"></span>

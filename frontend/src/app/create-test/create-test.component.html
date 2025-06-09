@@ -3,7 +3,7 @@
 
   <div class="content-frame" [class.collapsed]="sidebarCollapsed">
     <div class="login-container">
-      <h1 class="page-title">Gestion des Tests</h1>
+      <h1 class="page-title">Gestion des Tests d'Évaluation</h1>
       
       <div class="search-filter-container">
         <div class="search-box">
@@ -12,7 +12,7 @@
         </div>
         <div class="action-buttons">
           <button class="action-button create" (click)="openTestForm()">
-            <i class="fas fa-plus"></i> Créer un test
+            <i class="fas fa-plus"></i> Créer un test d'évaluation
           </button>         
         </div>
       </div>
@@ -23,7 +23,7 @@
             <div class="test-header">
               <span class="test-formation">{{ test.formation }}</span>
               <h3 class="test-title">{{ test.title }}</h3>
-              <p class="test-info">{{ test.questions.length }} questions</p>
+              <p class="test-info">{{ test.questions.length }} questions d'évaluation</p>
             </div>
             
             <div class="test-dates">
@@ -36,15 +36,6 @@
                 <span>{{ test.dateFin | date:'dd/MM/yyyy' }}</span>
               </div>
             </div>
-          </div>
-          
-          <div class="card-right">
-            <button class="card-button view" (click)="viewTest(test)">
-              <i class="fas fa-eye"></i> Voir le test
-            </button>
-            <button class="card-button delete" (click)="deleteTest(test)">
-              <i class="fas fa-trash"></i> Supprimer
-            </button>
           </div>
           
           <div class="card-actions">
@@ -63,7 +54,7 @@
   <!-- Modal de création/modification de test -->
   <div class="modal-overlay" *ngIf="showTestForm">
     <div class="modal">
-      <h3>{{ editMode ? 'Modifier' : 'Créer' }} un test</h3>
+      <h3>{{ editMode ? 'Modifier' : 'Créer' }} un test d'évaluation</h3>
       
       <form (ngSubmit)="submitTestForm()">
         <div class="form-row">
@@ -96,7 +87,7 @@
         <!-- Section des questions -->
         <div class="questions-section">
           <div class="questions-header">
-            <h4 style="color: #000; margin: 0;">Questions ({{ currentTest.questions.length }})</h4>
+            <h4 style="color: #000; margin: 0;">Questions d'évaluation ({{ currentTest.questions.length }})</h4>
             <button type="button" class="add-question-btn" (click)="addQuestion()">
               <i class="fas fa-plus"></i> Ajouter une question
             </button>
@@ -114,17 +105,15 @@
 
             <div class="question-text">
               <input type="text" [(ngModel)]="question.text" [name]="'question_' + i" 
-                     placeholder="Entrez votre question..." required>
+                     placeholder="Entrez votre question d'évaluation..." required>
             </div>
 
             <div class="choices-container">
               <div *ngFor="let choice of question.choices; let j = index" class="choice-item">
-                <input type="radio" [name]="'correct_' + i" 
-                       [checked]="question.correctAnswer === j"
-                       (change)="setCorrectAnswer(i, j)">
+                <span class="choice-label">Option {{ j + 1 }}:</span>
                 <input type="text" [(ngModel)]="choice.text" 
                        [name]="'choice_' + i + '_' + j"
-                       placeholder="Choix {{ j + 1 }}">
+                       placeholder="Option {{ j + 1 }}">
                 <div class="choice-actions">
                   <button type="button" class="choice-action-btn add" 
                           *ngIf="j === question.choices.length - 1 && question.choices.length < 5"
@@ -132,7 +121,7 @@
                     <i class="fas fa-plus"></i>
                   </button>
                   <button type="button" class="choice-action-btn remove" 
-                          *ngIf="question.choices.length > 3"
+                          *ngIf="question.choices.length > 2"
                           (click)="removeChoice(i, j)">
                     <i class="fas fa-minus"></i>
                   </button>
@@ -155,7 +144,7 @@
     <div class="modal">
       <h3>{{ viewingTest.title }}</h3>
       
-      <div style="margin-bottom: 0px;">
+      <div style="margin-bottom: 20px;">
         <p style="color: #000; margin: 5px 0;"><strong>Formation:</strong> {{ viewingTest.formation }}</p>
         <p style="color: #000; margin: 5px 0;"><strong>Date de création:</strong> {{ viewingTest.dateCreation | date:'dd/MM/yyyy' }}</p>
         <p style="color: #000; margin: 5px 0;"><strong>Date de fin:</strong> {{ viewingTest.dateFin | date:'dd/MM/yyyy' }}</p>
@@ -181,25 +170,20 @@
           </div>
           
           <div class="question-text" *ngIf="editingQuestionIndex === i">
-            <input type="text" [(ngModel)]="question.text" placeholder="Entrez votre question...">
+            <input type="text" [(ngModel)]="question.text" placeholder="Entrez votre question d'évaluation...">
           </div>
 
          <div class="choices-container" *ngIf="editingQuestionIndex !== i">
-          <div *ngFor="let choice of question.choices; let j = index" class="choice-item">
-            <span [style.color]="question.correctAnswer === j ? '#28a745' : '#000'" 
-                  [style.fontWeight]="question.correctAnswer === j ? 'bold' : 'normal'">
-              {{ j + 1 }}. {{ choice.text }}
-              <i class="fas fa-check" *ngIf="question.correctAnswer === j" 
-                style="color: #28a745; margin-left: 5px;"></i>
-            </span>
+          <div *ngFor="let choice of question.choices; let j = index" class="choice-item view-mode">
+            <span class="choice-number">{{ j + 1 }}.</span>
+            <span class="choice-text">{{ choice.text }}</span>
           </div>
         </div>
+
           <div class="choices-container" *ngIf="editingQuestionIndex === i">
             <div *ngFor="let choice of question.choices; let j = index" class="choice-item">
-              <input type="radio" [name]="'correct_edit_' + i" 
-                     [checked]="question.correctAnswer === j"
-                     (change)="setCorrectAnswerInView(i, j)">
-              <input type="text" [(ngModel)]="choice.text" placeholder="Choix {{ j + 1 }}">
+              <span class="choice-label">Option {{ j + 1 }}:</span>
+              <input type="text" [(ngModel)]="choice.text" placeholder="Option {{ j + 1 }}">
               <div class="choice-actions">
                 <button type="button" class="choice-action-btn add" 
                         *ngIf="j === question.choices.length - 1 && question.choices.length < 5"
@@ -207,17 +191,17 @@
                   <i class="fas fa-plus"></i>
                 </button>
                 <button type="button" class="choice-action-btn remove" 
-                        *ngIf="question.choices.length > 3"
+                        *ngIf="question.choices.length > 2"
                         (click)="removeChoiceInView(i, j)">
                   <i class="fas fa-minus"></i>
                 </button>
               </div>
             </div>
-            <div style="margin-top: 10x;">
-              <button type="button" class="choice-action-btn add" style="margin-right: 5px;" (click)="saveQuestionEdit(i)">
+            <div class="question-edit-actions">
+              <button type="button" class="question-save-btn" (click)="saveQuestionEdit(i)">
                 <i class="fas fa-check"></i> Sauvegarder
               </button>
-              <button type="button" class="choice-action-btn remove" (click)="cancelQuestionEdit()">
+              <button type="button" class="question-cancel-btn" (click)="cancelQuestionEdit()">
                 <i class="fas fa-times"></i> Annuler
               </button>
             </div>
@@ -230,8 +214,52 @@
       </div>
 
       <div class="modal-actions">
-        <button type="button" class="cancel" (click)="closeViewModal()">Annuler</button>
+        <button type="button" class="cancel" (click)="closeViewModal()">Fermer</button>
         <button type="button" class="confirm" (click)="saveTestModifications()">Enregistrer les modifications</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de confirmation -->
+  <div class="confirmation-modal-overlay" *ngIf="showConfirmationModal" (click)="closeConfirmationModal()">
+    <div class="confirmation-modal" (click)="$event.stopPropagation()">
+      <div class="confirmation-modal-header">
+        <div class="confirmation-modal-icon" [ngClass]="confirmationData.type">
+          <i class="fas" [ngClass]="{
+            'fa-exclamation-triangle': confirmationData.type === 'delete',
+            'fa-exclamation-circle': confirmationData.type === 'warning',
+            'fa-info-circle': confirmationData.type === 'info',
+            'fa-edit': confirmationData.type === 'edit'
+          }"></i>
+        </div>
+        <div class="confirmation-modal-header-text">
+          <h3 class="confirmation-modal-title">{{ confirmationData.title }}</h3>
+        </div>
+      </div>
+      
+      <div class="confirmation-modal-body">
+        <p class="confirmation-modal-message">{{ confirmationData.message }}</p>
+      </div>
+      
+      <div class="confirmation-modal-footer">
+        <button type="button" 
+               class="confirmation-btn confirmation-btn-cancel" 
+               (click)="closeConfirmationModal()">
+          <i class="fas fa-times"></i>
+          Annuler
+        </button>
+        <button type="button" 
+               class="confirmation-btn confirmation-btn-confirm" 
+               [ngClass]="confirmationData.type"
+               (click)="confirmAction()">
+          <i class="fas" [ngClass]="{
+            'fa-trash': confirmationData.type === 'delete',
+            'fa-exclamation-triangle': confirmationData.type === 'warning',
+            'fa-check': confirmationData.type === 'info',
+            'fa-edit': confirmationData.type === 'edit'
+          }"></i>
+          {{ getConfirmButtonText() }}
+        </button>
       </div>
     </div>
   </div>

@@ -907,3 +907,651 @@ textarea {
   color: #a41010;
   font-weight: bold;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Bouton pour voir plus de professeurs */
+.show-more-profs-btn {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #6c757d;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.show-more-profs-btn:hover {
+  background: #e9ecef;
+  color: #495057;
+  border-color: #adb5bd;
+}
+
+/* Modification des actions pour inclure l'icône étudiants */
+.card-actions {
+  position: absolute;
+  top: 15px;
+  right: 270px;
+  display: flex;
+  gap: 7px;
+  z-index: 2;
+}
+
+/* Style pour l'icône des étudiants */
+.action-icon.students {
+  color: #517aa6;
+}
+
+.action-icon.students:hover {
+  background: #007bff;
+  color: white;
+}
+
+
+
+
+
+
+
+
+/* Modal des étudiants - Style amélioré */
+.students-modal {
+  width: 750px;
+  max-width: 95vw;
+  max-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 20px;
+}
+
+.modal-header h3 {
+  color: #000;
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #f0f0f0;
+  color: #000;
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.students-table thead {
+  background: linear-gradient(135deg, #1a3a54 0%, #2c5282 100%);
+  color: white;
+}
+
+.students-table thead th {
+  padding: 15px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #d10000;
+}
+
+.students-table tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.students-table tbody tr:hover {
+  background: #f8f9fa;
+  transform: scale(1.01);
+}
+
+.students-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.students-table td {
+  padding: 16px 12px;
+  vertical-align: middle;
+}
+
+/* Colonnes spécifiques */
+.avatar-col {
+  width: 60px;
+}
+
+.name-col {
+  width: 25%;
+}
+
+.email-col {
+  width: 35%;
+}
+
+.filiere-col {
+  width: 20%;
+}
+
+.actions-col {
+  width: 80px;
+  text-align: center;
+}
+
+/* Cellules */
+.student-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(100deg, #d40404 0%, #1a3a54 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+}
+
+.student-name {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 15px;
+}
+
+.student-email {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.student-filiere {
+  background: #ba0303;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.delete-student-btn {
+  background: #d10000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 12px;
+}
+
+.delete-student-btn:hover {
+  background: #a00000;
+  transform: scale(1.1);
+}
+
+/* État vide */
+.no-students {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c757d;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 2px dashed #dee2e6;
+}
+
+.no-students i {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  display: block;
+  color: #adb5bd;
+}
+
+.no-students p {
+  margin: 0;
+  font-size: 16px;
+  font-style: italic;
+}
+
+/* Footer */
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 15px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.btn-secondary, .btn-primary {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  letter-spacing: 0.3px;
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #000;
+  border: 1px solid #000000;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-primary {
+  background-color: #000000;
+  color: white;
+  border: 1px solid #000000;
+}
+
+.btn-primary:hover {
+  background-color: #333333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .students-modal {
+    width: 95%;
+    max-height: 90vh;
+  }
+  
+  .students-table {
+    font-size: 12px;
+  }
+  
+  .students-table thead th {
+    padding: 12px 8px;
+    font-size: 11px;
+  }
+  
+  .students-table td {
+    padding: 12px 8px;
+  }
+  
+  .student-avatar {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+  
+  .student-name {
+    font-size: 14px;
+  }
+  
+  .student-email {
+    font-size: 12px;
+  }
+  
+  .student-filiere {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  .delete-student-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+  
+  .modal-footer {
+    flex-direction: column;
+  }
+  
+  .btn-secondary, .btn-primary {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .students-table thead th {
+    padding: 10px 6px;
+  }
+  
+  .students-table td {
+    padding: 10px 6px;
+  }
+  
+  /* Masquer l'email sur très petits écrans */
+  .email-col, .email-cell {
+    display: none;
+  }
+  
+  .name-col {
+    width: 40%;
+  }
+  
+  .filiere-col {
+    width: 35%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Modal de confirmation */
+.confirmation-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.confirmation-modal {
+  background: white;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 480px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out;
+  position: relative;
+}
+
+.confirmation-modal-header {
+  padding: 24px 24px 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.confirmation-modal-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.confirmation-modal-icon.delete {
+  background: #fee2e2;
+  color: #b90404;
+}
+
+.confirmation-modal-icon.warning {
+  background: #fef3c7;
+  color: #fecaca;
+}
+
+.confirmation-modal-icon.info {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.confirmation-modal-header-text {
+  flex: 1;
+}
+
+.confirmation-modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.confirmation-modal-body {
+  padding: 16px 24px 24px 24px;
+}
+
+.confirmation-modal-message {
+  color: #6b7280;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.confirmation-modal-footer {
+  padding: 16px 24px 24px 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  border-top: 1px solid #f0f0f0;
+}
+
+.confirmation-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.confirmation-btn:hover {
+  transform: translateY(-1px);
+}
+
+.confirmation-btn:active {
+  transform: translateY(0);
+}
+
+.confirmation-btn-cancel {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.confirmation-btn-cancel:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.confirmation-btn-confirm {
+  background: #b90404;
+  color: white;
+}
+
+.confirmation-btn-confirm:hover {
+  background: #b90404;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.confirmation-btn-confirm.warning {
+  background: #9c5f56;
+}
+
+.confirmation-btn-confirm.warning:hover {
+  background: #b45309;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+}
+
+.confirmation-btn-confirm.info {
+  background: #2563eb;
+}
+
+.confirmation-btn-confirm.info:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .confirmation-modal {
+    width: 95%;
+    margin: 10px;
+  }
+  
+  .confirmation-modal-header {
+    padding: 20px 20px 12px 20px;
+  }
+  
+  .confirmation-modal-body {
+    padding: 12px 20px 20px 20px;
+  }
+  
+  .confirmation-modal-footer {
+    padding: 12px 20px 20px 20px;
+    flex-direction: column;
+  }
+  
+  .confirmation-btn {
+    width: 100%;
+  }
+  
+  .confirmation-modal-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .confirmation-modal-title {
+    font-size: 18px;
+  }
+  
+  .confirmation-modal-message {
+    font-size: 15px;
+  }
+}
+
+/* Amélioration de l'accessibilité */
+.confirmation-modal:focus {
+  outline: none;
+}
+
+.confirmation-btn:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Animation de fermeture */
+.confirmation-modal-overlay.closing {
+  animation: fadeOut 0.2s ease-in forwards;
+}
+
+.confirmation-modal-overlay.closing .confirmation-modal {
+  animation: slideOut 0.2s ease-in forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+}
