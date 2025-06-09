@@ -1,4 +1,3 @@
-
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -19,20 +18,25 @@ namespace ApiGateway
                 options.AddPolicy(name: "_myAllowSpecificOrigins",
                     policy =>
                     {
-                        policy.WithOrigins("http://localhost:4200") // Allow the specific origin
+                        policy.WithOrigins(
+                                "http://localhost:4200", 
+                                "http://frontend:80",
+                                "http://127.0.0.1:4200",
+                                "http://localhost:3000") // Ajouter d'autres origines si nécessaire
                               .AllowAnyHeader()
                               .AllowAnyMethod()
                               .AllowCredentials(); // Allow credentials
                     });
             });
 
-
-
-            builder.WebHost.UseUrls("http://localhost:5001", "https://localhost:5000");
+            // CORRECTION: Configurez pour écouter sur le port 80 dans le conteneur
+            // Le mapping Docker 5000:80 va mapper le port 80 du conteneur vers 5000 de l'hôte
+            builder.WebHost.UseUrls("http://+:80");
 
             // Add services to the container.
-
             builder.Services.AddControllers();
+            
+            // Configuration JWT corrigée
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -40,16 +44,14 @@ namespace ApiGateway
             })
            .AddJwtBearer("Bearer", options =>
            {
-               options.Authority = "https://localhost:5018";
-               options.Audience = "https://localhost:5018";
-               options.RequireHttpsMetadata = false; // For development only
+               options.RequireHttpsMetadata = false; // Pour développement et Docker
                options.SaveToken = true;
                options.TokenValidationParameters = new TokenValidationParameters
                {
                    ValidateIssuer = true,
-                   ValidIssuer = "https://localhost:5018",
+                   ValidIssuer = "https://localhost:5018", // Doit correspondre au token JWT
                    ValidateAudience = true,
-                   ValidAudience = "https://localhost:5018",
+                   ValidAudience = "http://localhost:4200", // Doit correspondre au token JWT
                    ValidateIssuerSigningKey = true,
                    IssuerSigningKey = new SymmetricSecurityKey(
                        Encoding.UTF8.GetBytes("souhaillwa3rrrrrr@123333333haahehihasihkakjhjjsjdjjjjjjjjjjjjjjjjjjjjjjjjjhvkjygkjgkjgjkgjgjhgjgj")),
@@ -75,16 +77,22 @@ namespace ApiGateway
                    }
                };
            });
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+            // Swagger/OpenAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Configuration.AddJsonFile("ocelot.json");
+            
+            // Configuration Ocelot
+            builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
             builder.Services.AddOcelot(builder.Configuration);
+
+            // Health checks
+            builder.Services.AddHealthChecks();
 
             var app = builder.Build();
 
-            // Use CORS
-            app.UseCors("_myAllowSpecificOrigins"); // MUST come before auth middlewares
+            // IMPORTANT: CORS doit être en premier
+            app.UseCors("_myAllowSpecificOrigins");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -93,12 +101,14 @@ namespace ApiGateway
                 app.UseSwaggerUI();
             }
 
+            // Health check endpoint
+            app.MapHealthChecks("/health");
 
-            //app.UseHttpsRedirection();
+            // Middleware d'authentification
             app.UseAuthentication();
             app.UseAuthorization();
 
-            // Add Ocelot here
+            // Ocelot middleware - DOIT être après l'authentification et CORS
             await app.UseOcelot();
 
             app.MapControllers();
