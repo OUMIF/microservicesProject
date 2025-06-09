@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   # Base de données SQL Server
   sqlserver:
@@ -50,6 +52,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
       - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=UserServiceDB;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;
     depends_on:
       sqlserver:
@@ -62,7 +65,7 @@ services:
       - "5001:80"
     restart: on-failure
     healthcheck:
-      test: ["CMD-SHELL", "echo ok"]
+      test: ["CMD-SHELL", "echo ok"]  # Garder simple si pas de curl dans l'image
       interval: 30s
       timeout: 10s
       retries: 5
@@ -75,6 +78,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
       - Services__UserService__BaseUrl=http://userservice:80
     depends_on:
       userservice:
@@ -83,18 +87,27 @@ services:
       - backend-network
       - frontend-network
     ports:
-      - "5000:80"
+      - "5000:5000"
     restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "echo ok"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
   # Frontend Angular
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    environment:
+      - API_URL=http://localhost:5000
     ports:
       - "4200:80"
     depends_on:
-      - apigateway
+      apigateway:
+        condition: service_healthy
     networks:
       - frontend-network
 

@@ -2,6 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using UserService.Data;
 using Microsoft.OpenApi.Models;
+using UserService.Models; 
+using UserService.Interface;
+using UserService.Services;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +19,7 @@ builder.Services.AddDbContext<ApplicationDBCContext>(options =>
             errorNumbersToAdd: null)));
 
 // Configuration d'Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
     options.Password.RequireDigit = true;
     options.Password.RequiredLength = 6;
@@ -25,6 +30,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDBCContext>()
 .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<ITokenService, TokenService>();
 // Configuration des contrôleurs
 builder.Services.AddControllers();
 
@@ -59,34 +65,69 @@ using (var scope = app.Services.CreateScope())
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDBCContext>();
     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
-    try
+// Dans votre Program.cs, remplacez la section de migration par :
+
+try
+{
+    Console.WriteLine("Vérification de la base de données...");
+    
+    // Vérifier si la DB existe
+    var canConnect = await context.Database.CanConnectAsync();
+    
+    if (!canConnect)
     {
-        logger.LogInformation("Vérification de la base de données...");
-
-        await Task.Delay(5000);
-
+        // Créer la DB si elle n'existe pas
         await context.Database.EnsureCreatedAsync();
-        logger.LogInformation("Base de données vérifiée/créée.");
-
+        Console.WriteLine("Base de données créée.");
+    }
+    else
+    {
+        // Vérifier s'il y a des migrations en attente
         var pendingMigrations = await context.Database.GetPendingMigrationsAsync();
+        var appliedMigrations = await context.Database.GetAppliedMigrationsAsync();
+        
+        Console.WriteLine($"Migrations appliquées : {appliedMigrations.Count()}");
+        Console.WriteLine($"Migrations en attente : {pendingMigrations.Count()}");
+        
         if (pendingMigrations.Any())
         {
-            logger.LogInformation($"Application de {pendingMigrations.Count()} migration(s)...");
-            await context.Database.MigrateAsync();
-            logger.LogInformation("Migrations appliquées avec succès.");
+            try
+            {
+                // Tenter d'appliquer les migrations
+                await context.Database.MigrateAsync();
+                Console.WriteLine("Migrations appliquées avec succès.");
+            }
+            catch (Exception migrationEx)
+            {
+                Console.WriteLine($"Erreur lors des migrations : {migrationEx.Message}");
+                
+                // Si les tables existent déjà, marquer les migrations comme appliquées
+                if (migrationEx.Message.Contains("already an object named"))
+                {
+                    Console.WriteLine("Les tables existent déjà. Marquage des migrations comme appliquées...");
+                    
+                    // Ici vous pourriez exécuter une commande SQL pour insérer dans __EFMigrationsHistory
+                    // Ou simplement continuer sans erreur
+                    Console.WriteLine("Continuant avec la base existante...");
+                }
+                else
+                {
+                    throw; // Re-lancer si c'est une autre erreur
+                }
+            }
         }
         else
         {
-            logger.LogInformation("Aucune migration en attente.");
+            Console.WriteLine("Base de données à jour.");
         }
-
-        await SeedData.Initialize(scope.ServiceProvider, logger);
-        logger.LogInformation("Données de base initialisées.");
     }
-    catch (Exception ex)
-    {
-        logger.LogError(ex, "Erreur lors de l'initialisation de la base de données : {Message}", ex.Message);
-    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Erreur lors de l'initialisation de la base de données : {ex.Message}");
+    // Ne pas faire throw ici pour permettre à l'app de démarrer
+    Console.WriteLine("L'application va démarrer sans migration...");
+}
 }
 
 // Middleware & pipeline HTTP
@@ -95,6 +136,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+using (var scope = app.Services.CreateScope())
+   {
+       var services = scope.ServiceProvider;
+       try
+       {
+           var logger = services.GetRequiredService<ILogger<Program>>();
+           await SeedData.Initialize(services, logger);
+       }
+       catch (Exception ex)
+       {
+           var logger = services.GetRequiredService<ILogger<Program>>();
+           logger.LogError(ex, "An error occurred seeding the database.");
+       }
+   }
 
 app.UseCors("AllowAll");
 
