@@ -18,20 +18,25 @@ namespace ApiGateway
                 options.AddPolicy(name: "_myAllowSpecificOrigins",
                     policy =>
                     {
-                        policy.WithOrigins("http://localhost:4200", "http://frontend:80") // Allow both origins
+                        policy.WithOrigins(
+                                "http://localhost:4200", 
+                                "http://frontend:80",
+                                "http://127.0.0.1:4200",
+                                "http://localhost:3000") // Ajouter d'autres origines si nécessaire
                               .AllowAnyHeader()
                               .AllowAnyMethod()
                               .AllowCredentials(); // Allow credentials
                     });
             });
 
-            // Configure URLs pour écouter sur le port 80 dans le conteneur
+            // CORRECTION: Configurez pour écouter sur le port 80 dans le conteneur
+            // Le mapping Docker 5000:80 va mapper le port 80 du conteneur vers 5000 de l'hôte
             builder.WebHost.UseUrls("http://+:80");
 
             // Add services to the container.
             builder.Services.AddControllers();
             
-            // Configuration JWT améliorée
+            // Configuration JWT corrigée
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -39,17 +44,14 @@ namespace ApiGateway
             })
            .AddJwtBearer("Bearer", options =>
            {
-               // Utiliser l'URL interne du service pour la validation
-               options.Authority = "http://userservice:80";
-               options.Audience = "http://userservice:80";
                options.RequireHttpsMetadata = false; // Pour développement et Docker
                options.SaveToken = true;
                options.TokenValidationParameters = new TokenValidationParameters
                {
                    ValidateIssuer = true,
-                   ValidIssuer = "http://userservice:80",
+                   ValidIssuer = "https://localhost:5018", // Doit correspondre au token JWT
                    ValidateAudience = true,
-                   ValidAudience = "http://userservice:80",
+                   ValidAudience = "http://localhost:4200", // Doit correspondre au token JWT
                    ValidateIssuerSigningKey = true,
                    IssuerSigningKey = new SymmetricSecurityKey(
                        Encoding.UTF8.GetBytes("souhaillwa3rrrrrr@123333333haahehihasihkakjhjjsjdjjjjjjjjjjjjjjjjjjjjjjjjjhvkjygkjgkjgjkgjgjhgjgj")),
@@ -89,7 +91,7 @@ namespace ApiGateway
 
             var app = builder.Build();
 
-            // Use CORS - DOIT être avant l'authentification
+            // IMPORTANT: CORS doit être en premier
             app.UseCors("_myAllowSpecificOrigins");
 
             // Configure the HTTP request pipeline.
@@ -106,7 +108,7 @@ namespace ApiGateway
             app.UseAuthentication();
             app.UseAuthorization();
 
-            // Ocelot middleware - DOIT être après l'authentification
+            // Ocelot middleware - DOIT être après l'authentification et CORS
             await app.UseOcelot();
 
             app.MapControllers();

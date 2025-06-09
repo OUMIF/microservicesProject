@@ -52,28 +52,34 @@
               "routesFile": "prerender-routes.txt"
             }
           },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "1MB",
-                  "maximumError": "20MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "20kB",
-                  "maximumError": "40kB"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
+        "configurations": {
+          "production": {
+            "fileReplacements": [
+              {
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }
+            ],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "1MB",
+                "maximumError": "20MB"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "20kB",
+                "maximumError": "40kB"
+              }
+            ],
+            "outputHashing": "all"
           },
+          "development": {
+            "optimization": false,
+            "extractLicenses": false,
+            "sourceMap": true
+          }
+        },
           "defaultConfiguration": "production"
         },
         "serve": {
