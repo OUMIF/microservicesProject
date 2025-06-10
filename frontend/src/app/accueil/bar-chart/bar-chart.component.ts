@@ -59,9 +59,9 @@ export class BarChartComponent implements AfterViewInit {
     const ApexCharts = await import('apexcharts');
     this.chartOptions = {
       series: [
-        { name: 'Measurable stuff', data: [18, 50, 62, 100, 41, 65] },
-        { name: 'Another metric', data: [30, 20, 35, 60, 50, 70] },
-        { name: 'Yet another metric', data: [50, 70, 55, 80, 45, 75] }
+        { name: 'Mathématiques de base', data: [18, 50, 62, 100, 41, 65] },
+        { name: 'Algèbre avancée', data: [30, 20, 35, 60, 50, 70] },
+        { name: 'Fondamentaux de la géométrie', data: [50, 70, 55, 80, 45, 75] }
       ],
       chart: {
         type: 'bar',
@@ -85,7 +85,7 @@ export class BarChartComponent implements AfterViewInit {
       fill: { opacity: 1 },
       tooltip: {
         enabled: true,
-        y: { formatter: (value: number) => `${value}K` },
+        y: { formatter: (value: number) => `${value}%` },
         style: { fontFamily: 'Poppins' }
       },
       grid: {
@@ -94,7 +94,7 @@ export class BarChartComponent implements AfterViewInit {
       },
       yaxis: { show: true },
       markers: { size: 0 },
-      colors: ['#ff7675', '#74b9ff', '#a29bfe'],
+      colors: ['#b22222', '#313131', '#475569'],
       title: { text: '' },
       plotOptions: {
         bar: {

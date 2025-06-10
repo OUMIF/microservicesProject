@@ -25,29 +25,30 @@ export class AccueilComponent {
     isVoteOpen: true
   };
 
-  courses = [
+courses = [
     {
-      title: 'Basic Mathematics',
-      description: 'Fundamental concepts for beginners',
+      title: 'Mathématiques de base',
+      description: 'Concepts fondamentaux pour débutants',
       progress: 10,
       completed: 42,
       total: 200
     },
     {
-      title: 'Advanced Algebra',
-      description: 'Equations and functions mastery',
+      title: 'Algèbre avancée',
+      description: 'Maîtrise des équations et fonctions',
       progress: 56,
       completed: 84,
       total: 150
     },
     {
-      title: 'Geometry Fundamentals',
-      description: 'Shapes, angles, and measurements',
+      title: 'Fondamentaux de la géométrie',
+      description: 'Formes, angles et mesures',
       progress: 89,
       completed: 178,
       total: 200
     }
   ];
+
   getProgressColor(progress: number): string {
     if (progress < 40) return '#eb3434';      // soft RED
     if (progress < 60) return '#e9c46a';      // mellow yellow

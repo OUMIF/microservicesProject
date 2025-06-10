@@ -44,15 +44,15 @@ export class GrapheComponent {
     this.chartOptions = {
       series: [
         {
-          name: 'Measurable stuff',
+          name: 'Mathématiques de base',
           data: [18, 50, 62, 100, 41, 65]
         },
         {
-          name: 'Another metric',
+          name: 'Algèbre avancée',
           data: [30, 20, 35, 60, 50, 70]
         },
         {
-          name: 'Yet another metric',
+          name: 'Fondamentaux de la géométrie',
           data: [50, 70, 55, 80, 45, 75]
         }
       ],
@@ -62,7 +62,7 @@ export class GrapheComponent {
         toolbar: { show: false },
         zoom: { enabled: false }
       },
-      colors: ['#ff7675', '#74b9ff', '#a29bfe'],
+      colors: ['#444443','#a41010','#475569'],
       dataLabels: { enabled: false },
       stroke: {
         width: 3,
@@ -97,7 +97,7 @@ export class GrapheComponent {
       tooltip: {
         enabled: true,
         y: {
-          formatter: (value: number) => `${value}K`
+          formatter: (value: number) => `${value}%`
         },
         style: {
           fontFamily: 'Poppins'
