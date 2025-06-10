@@ -20,9 +20,10 @@ RUN apt-get update && apt-get install -y netcat-traditional && rm -rf /var/lib/a
 
 COPY --from=build /app/publish .
 
-# Script d'attente de la base de données
+# Script d'attente de la base de données - APRÈS la copie du build
 COPY wait-for-db.sh /wait-for-db.sh
-RUN chmod +x /wait-for-db.sh
+RUN chmod +x /wait-for-db.sh && \
+    sed -i 's/\r$//' /wait-for-db.sh
 
 ENV ASPNETCORE_ENVIRONMENT=Production
 ENV ASPNETCORE_URLS=http://+:80
