@@ -1,0 +1,30 @@
+.page-container {
+    display: flex;
+    min-height: 90vh;
+    background: #e4ebf2;
+    padding: 0.5vw;
+    box-sizing: border-box;
+  }
+  
+  .content-frame {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    height: calc(93.2vh - 2vw);
+    margin-left: calc(225px + 1.4vw);
+    margin-right: 0.4vw;
+    border-radius: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    overflow-y: auto;
+  }
+  
+  .content-frame.collapsed {
+    margin-left: calc(70px + 0.2vw);
+  }
+  
+  .login-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px;
+  }

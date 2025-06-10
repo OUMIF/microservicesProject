@@ -1,0 +1,36 @@
+/* test-details.component.css */
+.test-details-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .detail-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .detail-section h2 {
+    color: #d10000;
+    margin-bottom: 0.5rem;
+  }
+  
+  .back-button {
+    background: #d10000;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .back-button:hover {
+    background: #a00000;
+  }

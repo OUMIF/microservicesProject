@@ -1,0 +1,307 @@
+<div class="page-container">
+  <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+
+  <div class="content-frame" [class.collapsed]="sidebarCollapsed">
+    <div class="login-container">
+      <h1 class="page-title">Gestion des Formations</h1>
+      <div class="search-filter-container">
+        <div class="search-box">
+          <input type="text" placeholder="Rechercher...">
+          <button class="search-button"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="action-buttons">
+          <button class="action-button create" (click)="openCreationForm()">
+            <i class="fas fa-plus"></i> Créer une formation
+          </button>         
+        </div>
+      </div>
+  
+      <div class="formations-grid">
+        <div *ngFor="let formation of formations" class="formation-card">
+          <div class="card-left">
+            <div class="formation-image" [style.background-image]="'url(' + formation.imageUrl + ')'"></div>
+            <div class="formation-info">
+              <span class="formation-program" *ngIf="formation.filieres.length">{{ formation.filieres.join(', ') }}</span>
+              <h3 class="formation-title">{{ formation.title }}</h3>
+              <p class="formation-tagline">{{ formation.sujet }}</p>
+              <div class="formation-description" [innerHTML]="formation.description"></div>
+              <p class="formation-dates">{{ formation.programDates }}</p>
+            </div>
+          </div>
+          
+          <div class="card-right">
+            <div class="professor-section">
+              <h4>Responsables</h4>
+              
+              <!-- Afficher seulement le premier professeur -->
+              <div *ngIf="formation.professeurs.length > 0" class="professor-info">
+                <div class="professor-photo" [style.background-image]="'url(' + formation.professeurs[0].photo + ')'"></div>
+                <div class="professor-details">
+                  <p class="professor-name">{{ formation.professeurs[0].name }}</p>
+                  <p class="professor-bio">{{ formation.professeurs[0].description_prof }}</p>
+                </div>
+              </div>
+              
+              <!-- Bouton pour voir les autres professeurs si plus d'un -->
+              <button *ngIf="formation.professeurs.length > 1" 
+                      class="show-more-profs-btn"
+                      (click)="toggleProfessorsView(formation.Idformation)">
+                {{ showAllProfessors[formation.Idformation] ? 'Masquer' : 'Voir' }} les autres professeurs 
+                ({{ formation.professeurs.length - 1 }})
+              </button>
+              
+              <!-- Afficher tous les autres professeurs si activé -->
+              <div *ngIf="showAllProfessors[formation.Idformation] && formation.professeurs.length > 1">
+                <div *ngFor="let prof of formation.professeurs.slice(1)" class="professor-info">
+                  <div class="professor-photo" [style.background-image]="'url(' + prof.photo + ')'"></div>
+                  <div class="professor-details">
+                    <p class="professor-name">{{ prof.name }}</p>
+                    <p class="professor-bio">{{ prof.description_prof }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                
+          <div class="card-actions">
+            <button class="action-icon students" 
+                    (click)="toggleStudentsList(formation.Idformation)" 
+                    title="Voir les étudiants">
+              <i class="fas fa-users"></i>
+            </button>
+            <button class="action-icon edit" (click)="editFormation(formation)">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="action-icon delete" (click)="deleteFormation(formation)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal des étudiants - DÉPLACÉE AU NIVEAU GLOBAL -->
+  <div class="modal-overlay" *ngIf="selectedFormationId">
+    <div class="modal students-modal">
+      <div class="modal-header">
+        <h3>Étudiants de la formation: {{ getFormationTitle(selectedFormationId) }}</h3>
+        <button class="close-btn" (click)="selectedFormationId = null">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <!-- Tableau des étudiants -->
+        <div class="table-container" *ngIf="getEtudiantsByFormationId(selectedFormationId).length > 0">
+          <table class="students-table">
+            <thead>
+              <tr>
+                <th class="avatar-col"></th>
+                <th class="name-col">Nom</th>
+                <th class="email-col">Email</th>
+                <th class="filiere-col">Filière</th>
+                <th class="actions-col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let etudiant of getEtudiantsByFormationId(selectedFormationId); let i = index" 
+                  class="student-row">
+                <td class="avatar-cell">
+                  <div class="student-avatar">
+                    <i class="fas fa-user-graduate"></i>
+                  </div>
+                </td>
+                <td class="name-cell">
+                  <span class="student-name">{{ etudiant.name }}</span>
+                </td>
+                <td class="email-cell">
+                  <span class="student-email">{{ etudiant.email }}</span>
+                </td>
+                <td class="filiere-cell">
+                  <span class="student-filiere">{{ etudiant.filiere }}</span>
+                </td>
+                <td class="actions-cell">
+                  <button class="delete-student-btn" 
+                          (click)="deleteStudent(etudiant.id, selectedFormationId)" 
+                          title="Supprimer l'étudiant">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- État vide -->
+        <div *ngIf="getEtudiantsByFormationId(selectedFormationId).length === 0" class="no-students">
+          <i class="fas fa-users-slash"></i>
+          <p>Aucun étudiant inscrit dans cette formation</p>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" (click)="selectedFormationId = null">Fermer</button>
+        <button type="button" class="btn-primary">Ajouter un étudiant</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de création/modification de formation -->
+  <div class="modal-overlay" *ngIf="showFormationForm">
+    <div class="modal">
+      <h3>{{ editMode ? 'Modifier' : 'Créer' }} une formation</h3>
+      <form (ngSubmit)="submitFormationForm()">
+        <!-- Ligne 1 -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>Titre de la formation:</label>
+            <input type="text" [(ngModel)]="currentFormation.title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label>Sujet:</label>
+            <input type="text" [(ngModel)]="currentFormation.sujet" name="sujet" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Image:</label>
+            <div class="file-upload">
+              <input type="file" id="formation-image" (change)="onFileSelected($event)" accept="image/*">
+              <label for="formation-image" class="upload-button"></label>
+              <span class="file-name" *ngIf="selectedFileName">{{ selectedFileName }}</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Dates du programme:</label>
+            <input type="text" [(ngModel)]="currentFormation.programDates" name="programDates" required>
+          </div>
+        </div>
+
+        <!-- Ligne 3 -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>Description:</label>
+            <textarea [(ngModel)]="currentFormation.description" name="description" rows="3" required></textarea>
+          </div>
+        </div>
+
+        <!-- Ligne 4 - Filières -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>Filière(s):</label>
+            <div class="custom-multiselect">
+              <div class="select-box" (click)="toggleDropdown('filieres')">
+                <div class="selected-items">
+                  <span class="selected-item" *ngFor="let filiere of currentFormation.filieres">
+                    {{ filiere }}
+                    <span class="remove-item" (click)="removeItem($event, filiere, 'filieres')">×</span>
+                  </span>
+                  <span class="placeholder" *ngIf="!currentFormation.filieres.length">Sélectionner...</span>
+                </div>
+                <div class="dropdown-arrow">▼</div>
+              </div>
+              <div class="options-container" *ngIf="showFilieresDropdown">
+                <div class="option" *ngFor="let filiere of availableFilieres">
+                  <label>
+                    <input type="checkbox" 
+                      [checked]="currentFormation.filieres.includes(filiere)"
+                      (change)="toggleSelection(filiere, 'filieres')">
+                    {{ filiere }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ligne 5 - Professeurs -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>Professeur(s):</label>
+            <div class="custom-multiselect">
+              <div class="select-box" (click)="toggleDropdown('professeurs')">
+                <div class="selected-items">
+                  <span class="selected-item" *ngFor="let prof of currentFormation.professeurs">
+                    {{ prof.name }}
+                    <span class="remove-item" (click)="removeItem($event, prof, 'professeurs')">×</span>
+                  </span>
+                  <span class="placeholder" *ngIf="!currentFormation.professeurs.length">Sélectionner...</span>
+                </div>
+                <div class="dropdown-arrow">▼</div>
+              </div>
+              <div class="options-container" *ngIf="showProfesseursDropdown">
+                <div class="option" *ngFor="let prof of availableProfesseurs">
+                  <label>
+                    <input type="checkbox" 
+                      [checked]="isProfessorSelected(prof)"
+                      (change)="toggleProfessorSelection(prof)">
+                    <div class="professor-info">
+                      <img [src]="prof.photo" class="professor-thumb">
+                      <div>
+                        <div><strong>{{ prof.name }}</strong></div>
+                        <div class="professor-desc">{{ prof.description_prof }}</div>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" (click)="closeForm()">Annuler</button>
+          <button type="submit">{{ editMode ? 'Modifier' : 'Créer' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal de confirmation -->
+<div class="confirmation-modal-overlay" *ngIf="showConfirmationModal" (click)="closeConfirmationModal()">
+  <div class="confirmation-modal" (click)="$event.stopPropagation()">
+    <div class="confirmation-modal-header">
+      <div class="confirmation-modal-icon" [ngClass]="confirmationData.type">
+        <i class="fas" [ngClass]="{
+          'fa-exclamation-triangle': confirmationData.type === 'delete',
+          'fa-exclamation-circle': confirmationData.type === 'warning',
+          'fa-info-circle': confirmationData.type === 'info'
+        }"></i>
+      </div>
+      <div class="confirmation-modal-header-text">
+        <h3 class="confirmation-modal-title">{{ confirmationData.title }}</h3>
+      </div>
+    </div>
+    
+    <div class="confirmation-modal-body">
+      <p class="confirmation-modal-message">{{ confirmationData.message }}</p>
+    </div>
+    
+    <div class="confirmation-modal-footer">
+      <button type="button" 
+              class="confirmation-btn confirmation-btn-cancel" 
+              (click)="closeConfirmationModal()">
+        <i class="fas fa-times"></i>
+        Annuler
+      </button>
+      <button type="button" 
+              class="confirmation-btn confirmation-btn-confirm" 
+              [ngClass]="confirmationData.type"
+              (click)="confirmAction()">
+        <i class="fas" [ngClass]="{
+          'fa-trash': confirmationData.type === 'delete',
+          'fa-exclamation-triangle': confirmationData.type === 'warning',
+          'fa-check': confirmationData.type === 'info'
+        }"></i>
+        {{ confirmationData.type === 'delete' ? 'Supprimer' : 'Confirmer' }}
+      </button>
+    </div>
+  </div>
+</div>

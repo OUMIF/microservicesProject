@@ -1,0 +1,270 @@
+<div class="page-container">
+  <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+  
+  <div class="content-frame" [class.collapsed]="sidebarCollapsed">
+    <div class="login-container">
+      
+      <h1 class="page-title">Gestion des Comptes Professeurs</h1>
+      
+      <div class="search-filter-container">
+        <div class="search-box">
+          <input type="text" placeholder="Rechercher..." [(ngModel)]="searchQuery" (input)="updateTable()">
+          <button class="search-button"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="action-buttons">
+          <button class="action-button create" (click)="showProfessorForm = true; editMode = false">
+            <i class="fas fa-user-plus"></i> Créer
+          </button>
+          <button class="filter-button" (click)="showFilterOptions = true">
+            <i class="fas fa-filter"></i> Filtres
+          </button>
+          <button class="reset-button" (click)="resetFilters()">
+            <i class="fas fa-sync-alt"></i> Réinitialiser
+          </button>
+          <button class="action-button import" (click)="generatePDF()">
+            <i class="fas fa-file-import"></i> Exporter
+          </button>
+          <button class="delete-all-button" (click)="deleteAllSelected(getSelectedProfessors())">
+            <i class="fas fa-trash"></i> Supprimer sélection
+          </button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table [ngClass]="getTableClasses()">
+          <thead>
+            <tr>
+              <th *ngFor="let column of columns" 
+                  (click)="column.key !== 'select' && column.key !== 'actions' ? sortBy(column.key) : null">
+                <span *ngIf="column.key === 'select'">
+                  <input type="checkbox" [(ngModel)]="allSelected" (change)="toggleSelectAll()">
+                </span>
+                <span *ngIf="column.key !== 'select'">
+                  {{ column.title }}
+                  <span *ngIf="sortColumn === column.key" class="sort-icon">
+                    {{ sortDirection === 'asc' ? '↑' : '↓' }}
+                  </span>
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let professor of pagedProfessors">
+              <td><input type="checkbox" [(ngModel)]="professor.selected"></td>
+              <td>
+                <div class="avatar-container">
+                  <div *ngIf="professor.isPhotoUrl" class="avatar-image-wrapper">
+                    <img [src]="professor.photo" alt="Photo" class="avatar-image">
+                  </div>
+                  <div *ngIf="!professor.isPhotoUrl" 
+                    class="avatar-initials text-white"
+                    [ngStyle]="{ 'background-color': getInitialBackgroundColor(professor.photo) }"
+                    [title]="professor.photo">
+                    {{ professor.photo.length > 2 ? professor.photo.substring(0,2) : professor.photo }}
+                  </div>
+                </div>
+              </td>
+              <td>{{ professor.matricule }}</td>
+              <td>{{ professor.lastName }}</td>
+              <td>{{ professor.firstName }}</td>
+              <td>{{ professor.email }}</td>
+              <td>{{ professor.department }}</td>
+              <td>{{ professor.modules | safeJoin }}</td>
+              <td>{{ professor.programs | safeJoin:', ' }}</td>
+              <td>{{ professor.yearsOfExperience }}</td>
+              <td class="actions">
+                <button class="icon-button edit" (click)="openEditForm(professor)">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+                <button class="icon-button delete" (click)="deleteProfessor(professor)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination-container">
+          <div class="pagination-controls">
+            <button class="pagination-arrow" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button *ngFor="let page of getPageNumbers()" 
+                    class="pagination-number" 
+                    [class.active]="page === currentPage"
+                    (click)="goToPage(page)">
+              {{ page }}
+            </button>
+            <button class="pagination-arrow" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          
+          <div class="pagination-info">
+            <div class="items-per-page">
+              <select [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+              Par page, Total {{ professors.length }} éléments
+            </div>
+            
+            <div class="go-to-page">
+              Aller à
+              <input type="number" [(ngModel)]="goToPageInput" min="1" [max]="totalPages">
+              <button (click)="goToPage(goToPageInput)">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modals -->
+<div class="modal-overlay" *ngIf="showDeleteConfirmation">
+<div class="modal">
+  <h3>Confirmation de suppression</h3>
+  <p>Êtes-vous sûr de vouloir supprimer les professeurs sélectionnés ?</p>
+  <div class="modal-actions">
+    <button class="cancel" (click)="showDeleteConfirmation = false">Annuler</button>
+    <button class="confirm" (click)="confirmDeleteAll()">Confirmer</button>
+  </div>
+</div>
+</div>
+
+<div class="modal-overlay" *ngIf="showFilterOptions">
+<div class="modal filter-modal">
+  <h3>Filtres</h3>
+  <div class="filter-content">
+    <div class="filter-option">
+      <label>Département :</label>
+      <select [(ngModel)]="selectedDepartment">
+        <option value="">Tous</option>
+        <option *ngFor="let dept of departments" [value]="dept">{{dept}}</option>
+      </select>
+    </div>
+    <div class="filter-option">
+      <label>Filière :</label>
+      <select [(ngModel)]="selectedProgram">
+        <option value="">Toutes</option>
+        <option *ngFor="let program of programs" [value]="program">{{program}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="modal-actions compact">
+    <button class="cancel-btn" (click)="closeFilters()">Annuler</button>
+    <button class="apply-btn" (click)="applyFilters()">Appliquer</button>
+  </div>
+</div>
+</div>
+
+<div class="modal-overlay" *ngIf="showProfessorForm">
+<div class="modal">
+  <h3>{{editMode ? 'Modifier' : 'Créer'}} un professeur</h3>
+  <form (ngSubmit)="submitProfessorForm()">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Photo (URL/Initiales):</label>
+        <input type="text" [(ngModel)]="currentProfessor.photo" name="photo" required>
+      </div>
+      <div class="form-group">
+        <label>Matricule:</label>
+        <input type="text" [(ngModel)]="currentProfessor.matricule" name="matricule" [value]="generateNewMatricule()" required>
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nom:</label>
+        <input type="text" [(ngModel)]="currentProfessor.lastName" name="lastName" required>
+      </div>
+      <div class="form-group">
+        <label>Prénom:</label>
+        <input type="text" [(ngModel)]="currentProfessor.firstName" name="firstName" required>
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="currentProfessor.email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label>Années d'expérience:</label>
+        <input type="number" [(ngModel)]="currentProfessor.yearsOfExperience" name="yearsOfExperience" required>
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>Département:</label>
+        <select [(ngModel)]="currentProfessor.department" name="department" required>
+          <option value="">Sélectionner...</option>
+          <option *ngFor="let dept of departments" [value]="dept">{{dept}}</option>
+        </select>
+      </div>
+    
+      <div class="form-group">
+        <label>Filières:</label>
+        <div class="custom-multiselect">
+          <div class="select-box" (click)="toggleDropdown('programs')">
+            <div class="selected-items">
+              <span class="selected-item" *ngFor="let program of currentProfessor.programs">
+                {{program}}
+                <span class="remove-item" (click)="removeItem($event, program, 'programs')">×</span>
+              </span>
+              <span class="placeholder" *ngIf="!currentProfessor.programs.length">Sélectionner...</span>
+            </div>
+            <div class="dropdown-arrow">▼</div>
+          </div>
+          <div class="options-container" *ngIf="showProgramsDropdown">
+            <div class="option" *ngFor="let program of programs">
+              <label>
+                <input type="checkbox" 
+                  [checked]="currentProfessor.programs.includes(program)"
+                  (change)="toggleSelection(program, 'programs')">
+                {{program}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group single-row">
+      <label>Modules enseignés:</label>
+      <div class="custom-multiselect">
+        <div class="select-box" (click)="toggleDropdown('modules')">
+          <div class="selected-items">
+            <span class="selected-item" *ngFor="let module of currentProfessor.modules">
+              {{module}}
+              <span class="remove-item" (click)="removeItem($event, module, 'modules')">×</span>
+            </span>
+            <span class="placeholder" *ngIf="!currentProfessor.modules.length">Sélectionner...</span>
+          </div>
+          <div class="dropdown-arrow">▼</div>
+        </div>
+        <div class="options-container" *ngIf="showModulesDropdown">
+          <div class="option" *ngFor="let module of allModules">
+            <label>
+              <input type="checkbox" 
+                [checked]="currentProfessor.modules.includes(module)"
+                (change)="toggleSelection(module, 'modules')">
+              {{module}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-actions">
+      <button type="button" (click)="showProfessorForm = false">Annuler</button>
+      <button type="submit">{{editMode ? 'Modifier' : 'Créer'}}</button>
+    </div>
+  </form>
+</div>
+</div>
