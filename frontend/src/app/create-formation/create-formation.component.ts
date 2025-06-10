@@ -78,43 +78,44 @@ export class CreateFormationComponent {
   ];
 
   formations: Formation[] = [
-    {
-      title: 'Data Science Principles',
-      sujet: 'Are you prepared for our data-driven world?',
-      description: '<p>Data Science Principles gives you an overview of data science with a code- and math-free introduction to prediction, causality, data wrangling, privacy, and ethics.</p>',
-      imageUrl: 'assets/1.jpg',
-      filieres: ['Business'],
-      Idformation: '1f5f67c1-45e8-451a-bda4-de4b2571571c',
-      professeurs: [
-        {
-          id: '1',
-          name: "Dr. John Smith",
-          description_prof: "Professeur en Data Science avec 15 ans d'expérience",
-          photo: "assets/Malak.jpg",
-          filiere: 'Business'
-        }
-      ],
-      programDates: '2025-06-01 to 2025-08-31'
-    },
-    {
-      title: 'Data Science Principles',
-      sujet: 'Are you prepared for our data-driven world?',
-      description: '<p>Data Science Principles gives you an overview of data science with a code- and math-free introduction to prediction, causality, data wrangling, privacy, and ethics.</p>',
-      imageUrl: 'assets/2.jpg',
-      filieres: ['Business'],
-      Idformation: '2f5f67c1-45e8-451a-bda4-de4b2571571c',
-      professeurs: [
-        {
-          id: '1',
-          name: "Dr. John Smith",
-          description_prof: "Professeur en Data Science avec 15 ans d'expérience",
-          photo: "assets/Malak.jpg",
-          filiere: 'Business'
-        }
-      ],
-      programDates: '2025-07-01 to 2025-09-30'
-    }
-  ];
+  {
+    title: 'Développement Web avec React',
+    sujet: 'Maîtrisez les bases du développement front-end moderne',
+    description: '<p>Apprenez à créer des interfaces utilisateur dynamiques et performantes avec React, le framework JavaScript populaire pour le développement web.</p>',
+    imageUrl: 'assets/1.jpg',  // logo React
+    filieres: ['Génie Informatique'],
+    Idformation: '1a2b3c4d-11aa-22bb-33cc-44dd55667788',
+    professeurs: [
+      {
+        id: '1',
+        name: "Pr. Amina El Mansouri",
+        description_prof: "Experte en développement web et frameworks JavaScript ",
+        photo: "assets/Malak.jpg",
+        filiere: 'Génie Informatique'
+      }
+    ],
+    programDates: '2025-03-01 to 2025-05-31'
+  },
+  {
+    title: 'Introduction à la Data Science avec Python',
+    sujet: 'Exploitez le potentiel de Python pour l’analyse de données',
+    description: '<p>Formation pratique sur les bibliothèques Python essentielles pour la data science, comme Pandas, NumPy, et Matplotlib, ainsi que les bases de l’apprentissage automatique.</p>',
+    imageUrl: 'assets/2.jpg',  // logo Python
+    filieres: ['Génie Informatique'],
+    Idformation: '9e8d7c6b-55aa-44bb-88cc-99dd11223344',
+    professeurs: [
+      {
+        id: '2',
+        name: "Pr. Youssef Berrada",
+        description_prof: "Chercheur en intelligence artificielle et data science ",
+        photo: "assets/Malak.jpg",
+        filiere: 'Génie Informatique'
+      }
+    ],
+    programDates: '2025-04-15 to 2025-07-15'
+  }
+];
+
 
   // Méthode pour ouvrir la modal de confirmation
   openConfirmationModal(title: string, message: string, type: 'delete' | 'warning' | 'info', onConfirm: () => void) {
