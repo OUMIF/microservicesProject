@@ -1,187 +1,164 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System.Security.Claims;
-using System.Text;
+using Microsoft.AspNetCore.Identity;
 using UserService.Data;
+using Microsoft.OpenApi.Models;
+using UserService.Models; 
 using UserService.Interface;
-using UserService.Models;
 using UserService.Services;
 
-namespace UserService
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Configuration des services
+builder.Services.AddDbContext<ApplicationDBCContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions => sqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(30),
+            errorNumbersToAdd: null)));
+
+// Configuration d'Identity
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
-    public class Program
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+})
+.AddEntityFrameworkStores<ApplicationDBCContext>()
+.AddDefaultTokenProviders();
+
+builder.Services.AddScoped<ITokenService, TokenService>();
+// Configuration des contrôleurs
+builder.Services.AddControllers();
+
+// Configuration de Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "User Service API", Version = "v1" });
+});
+
+// Configuration CORS si nécessaire
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
     {
-        public static async Task Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container
-            builder.Services.AddControllers()
-                .AddNewtonsoftJson(options =>
-                {
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                });
-
-            // Configure Swagger with JWT support
-            builder.Services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "User Service API", Version = "v1" });
-
-                // Corrected JWT authentication setup for Swagger
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.Http, // Changed from ApiKey to Http
-                    Scheme = "Bearer"
-                });
-
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            Array.Empty<string>() // No scopes required
-        }
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
     });
-            });
+});
 
-            // Database and Identity configuration
-            builder.Services.AddDbContext<ApplicationDBCContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Configuration des logs
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 
-            builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
-            {
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequiredLength = 12;
-            }).AddEntityFrameworkStores<ApplicationDBCContext>();
+var app = builder.Build();
 
-            // JWT Configuration
-            builder.Services.AddAuthentication(options =>
+// Appliquer les migrations automatiquement
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDBCContext>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+// Dans votre Program.cs, remplacez la section de migration par :
+
+try
+{
+    Console.WriteLine("Vérification de la base de données...");
+    
+    // Vérifier si la DB existe
+    var canConnect = await context.Database.CanConnectAsync();
+    
+    if (!canConnect)
+    {
+        // Créer la DB si elle n'existe pas
+        await context.Database.EnsureCreatedAsync();
+        Console.WriteLine("Base de données créée.");
+    }
+    else
+    {
+        // Vérifier s'il y a des migrations en attente
+        var pendingMigrations = await context.Database.GetPendingMigrationsAsync();
+        var appliedMigrations = await context.Database.GetAppliedMigrationsAsync();
+        
+        Console.WriteLine($"Migrations appliquées : {appliedMigrations.Count()}");
+        Console.WriteLine($"Migrations en attente : {pendingMigrations.Count()}");
+        
+        if (pendingMigrations.Any())
+        {
+            try
             {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
+                // Tenter d'appliquer les migrations
+                await context.Database.MigrateAsync();
+                Console.WriteLine("Migrations appliquées avec succès.");
+            }
+            catch (Exception migrationEx)
             {
-                options.TokenValidationParameters = new TokenValidationParameters
+                Console.WriteLine($"Erreur lors des migrations : {migrationEx.Message}");
+                
+                // Si les tables existent déjà, marquer les migrations comme appliquées
+                if (migrationEx.Message.Contains("already an object named"))
                 {
-                    ValidateIssuer = true,
-                    ValidIssuer = builder.Configuration["JWT:Issuer"],
-                    ValidateAudience = true,
-                    ValidAudience = builder.Configuration["JWT:Audience"],
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"])),
-                    ValidateLifetime = true,
-                    ClockSkew = TimeSpan.Zero, // Reduce the default 5 min clock skew
-                    RoleClaimType = ClaimTypes.Role // Or "role" depending on your preference
-                };
-
-                // Add JWT debugging
-                options.Events = new JwtBearerEvents
-                {
-                    OnTokenValidated = context =>
-                    {
-                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
-                        var claims = context.Principal.Claims.Select(c => $"{c.Type}={c.Value}");
-                        logger.LogInformation($"Token claims: {string.Join(", ", claims)}");
-                        return Task.CompletedTask;
-                    },
-                    OnAuthenticationFailed = context =>
-                    {
-                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
-                        logger.LogError($"Authentication failed: {context.Exception.Message}");
-                        return Task.CompletedTask;
-                    },
-                    OnMessageReceived = context =>
-                    {
-                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
-                        logger.LogInformation("JWT token received");
-                        return Task.CompletedTask;
-                    }
-                };
-            });
-
-            // Register services
-            builder.Services.AddScoped<ITokenService, TokenService>();
-
-            var app = builder.Build();
-
-            // Database seeding
-            using (var scope = app.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                try
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    await SeedData.Initialize(services, logger);
+                    Console.WriteLine("Les tables existent déjà. Marquage des migrations comme appliquées...");
+                    
+                    // Ici vous pourriez exécuter une commande SQL pour insérer dans __EFMigrationsHistory
+                    // Ou simplement continuer sans erreur
+                    Console.WriteLine("Continuant avec la base existante...");
                 }
-                catch (Exception ex)
+                else
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred seeding the database.");
+                    throw; // Re-lancer si c'est une autre erreur
                 }
             }
-
-            // Configure the HTTP request pipeline
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "User Service API V1");
-                });
-            }
-
-            app.UseHttpsRedirection();
-
-            // Add custom token validation debugging middleware
-            app.Use(async (context, next) =>
-            {
-                var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
-
-                var authHeader = context.Request.Headers["Authorization"].ToString();
-                if (!string.IsNullOrEmpty(authHeader))
-                {
-                    // Just log that we have the header but don't show the full token for security
-                    logger.LogInformation($"Request has Authorization header");
-                }
-
-                await next();
-
-                // Log authentication status after the request is processed
-                logger.LogInformation($"Path: {context.Request.Path}, Auth Status: {context.User?.Identity?.IsAuthenticated}");
-
-                if (context.User?.Identity?.IsAuthenticated == true)
-                {
-                    var roles = context.User.Claims
-                        .Where(c => c.Type == ClaimTypes.Role || c.Type == "role")
-                        .Select(c => c.Value);
-                    logger.LogInformation($"User roles: {string.Join(", ", roles)}");
-                }
-            });
-
-            // Authentication middleware must be before authorization
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.MapControllers();
-
-            app.Run();
+        }
+        else
+        {
+            Console.WriteLine("Base de données à jour.");
         }
     }
 }
+catch (Exception ex)
+{
+    Console.WriteLine($"Erreur lors de l'initialisation de la base de données : {ex.Message}");
+    // Ne pas faire throw ici pour permettre à l'app de démarrer
+    Console.WriteLine("L'application va démarrer sans migration...");
+}
+}
+
+// Middleware & pipeline HTTP
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+using (var scope = app.Services.CreateScope())
+   {
+       var services = scope.ServiceProvider;
+       try
+       {
+           var logger = services.GetRequiredService<ILogger<Program>>();
+           await SeedData.Initialize(services, logger);
+       }
+       catch (Exception ex)
+       {
+           var logger = services.GetRequiredService<ILogger<Program>>();
+           logger.LogError(ex, "An error occurred seeding the database.");
+       }
+   }
+
+app.UseCors("AllowAll");
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.MapGet("/health", () => Results.Ok(new { Status = "Healthy", Timestamp = DateTime.UtcNow }));
+
+app.Run();

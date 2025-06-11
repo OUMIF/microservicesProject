@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl: string = "https://localhost:5000/auth/login";
+  private apiUrl: string = `${environment.apiUrl}/auth/login`;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -63,6 +63,7 @@ export class AuthService {
   logout(): void {
     if (typeof window !== 'undefined' && window.localStorage) {
       localStorage.removeItem('auth_token');
+      localStorage.removeItem('role');
     }
     this.router.navigate(['/accueil']);
   }
