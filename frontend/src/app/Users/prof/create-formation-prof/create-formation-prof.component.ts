@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { SidebarComponent } from '../sidebar/sidebar.component';
+import { SidebarProfComponent } from '../sidebar-prof/sidebar-prof.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
 
 interface Professor {
   id: string;
@@ -24,13 +25,15 @@ interface Formation {
 }
 
 @Component({
-  selector: 'app-create-formation',
+  selector: 'app-create-formation-prof',
   standalone: true,
-  imports: [SidebarComponent, RouterModule, FormsModule, CommonModule],
-  templateUrl: './create-formation.component.html',
-  styleUrl: './create-formation.component.css'
+  imports: [SidebarProfComponent, RouterModule, FormsModule, CommonModule],
+  templateUrl: './create-formation-prof.component.html',
+  styleUrl: './create-formation-prof.component.css'
 })
-export class CreateFormationComponent {
+
+
+export class CreateFormationProfComponent {
   sidebarCollapsed = false;
   onSidebarToggled(isCollapsed: boolean) {
     this.sidebarCollapsed = isCollapsed;

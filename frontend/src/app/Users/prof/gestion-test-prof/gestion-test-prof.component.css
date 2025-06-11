@@ -1,0 +1,221 @@
+.page-container {
+    display: flex;
+    min-height: 90vh;
+    background: #fafafa; /* plus clair et doux */
+    padding: 1rem 0.8rem;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content-frame {
+    flex: 1;
+    padding: 25px 30px;
+    background: #fff;
+    height: calc(93.2vh - 3.5rem);
+    margin-left: calc(225px + 1.4vw);
+    margin-right: 0.4vw;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-top: 6px solid #d10000;
+}
+
+.content-frame.collapsed {
+    margin-left: calc(70px + 0.2vw);
+}
+
+.page-title {
+    color: #111;
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 3px solid #f7f7f7;
+    position: relative;
+    cursor: default;
+    user-select: none;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 120px;
+    height: 3px;
+    background: #d10000;
+    border-radius: 2px;
+}
+
+.login-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0px 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    align-items: center;
+}
+
+.card {
+    --border-radius: 1rem;
+    --primary-color: #282828;
+    --secondary-color: #444;
+    width: 100%;
+    background: #fff;
+    padding: 1.8rem 1.5rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow:
+      8px 8px 15px rgba(209, 0, 0, 0.08),
+      -8px -8px 15px rgba(255, 255, 255, 0.9); /* Neumorphism */
+    position: relative;
+    border: 1px solid #d2d2d2;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    box-shadow:
+      0 20px 35px rgba(91, 89, 89, 0.25),
+      inset 0 0 8px rgba(209, 0, 0, 0.1);
+    border-color: var(--primary-color);
+    transform: scale(1.01);
+    z-index: 5;
+}
+
+
+
+.card:hover .card__title {
+    color: var(--primary-color);
+}
+
+
+
+.card:hover .card__date {
+    color: var(--primary-color);
+}
+
+.card__arrow {
+    position: absolute;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 28px;
+    height: 28px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 0 6px rgba(209, 0, 0, 0.6);
+}
+
+.card:hover .card__arrow {
+    background: #a50000;
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: 0 0 12px rgba(209, 0, 0, 0.9);
+}
+
+.card svg {
+    fill: #fff;
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card__arrow svg {
+    transform: scale(1.25);
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    .card {
+        width: 100%;
+        max-width: 350px;
+    }
+    .content-frame {
+        margin-left: 70px;
+        height: auto;
+        min-height: 80vh;
+    }
+}
+
+
+
+
+.card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 0.3rem;
+}
+
+.card__content {
+  font-size: 1rem;
+  color: #4a4a4a;
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+}
+
+.card__date {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 0.8rem;
+}
+
+.stats-container {
+  margin-top: 15px;
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 15px 20px;
+  box-shadow: inset 0 0 10px rgb(0 0 0 / 0.05);
+  border: 1px solid #ddd;
+  color: #222;
+}
+
+.stats-container h4 {
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #d10000;
+}
+
+.stats-container p {
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.stats-container h5 {
+  font-weight: 600;
+  margin-bottom: 6px;
+  margin-top: 12px;
+  color: #333;
+}
+
+.stats-container ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 10px 0;
+}
+
+.stats-container ul li {
+  font-size: 0.9rem;
+  color: #555;
+  padding-left: 10px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.stats-container ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #d10000;
+}

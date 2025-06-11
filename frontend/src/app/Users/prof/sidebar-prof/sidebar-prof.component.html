@@ -1,0 +1,78 @@
+<div id="nav-bar">
+    <input type="checkbox" id="nav-toggle">
+  
+    <div id="nav-header">
+      <a routerLink="/welcome" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" target="_blank">
+        <div id="nav-title">
+          <span>EduF<i class="fas fa-graduation-cap"></i>rma</span>
+        </div>
+      </a>
+      <label for="nav-toggle" (click)="toggleSidebar()">
+        <span id="nav-toggle-burger"></span>
+      </label>
+      <hr>
+    </div>
+  
+    <div id="nav-content">
+      <a class="nav-button" 
+        routerLink="/accueil-prof" 
+        routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}">
+        <i class="fas fa-home"></i>
+        <span>Accueil</span>
+      </a>
+      <a class="nav-button" 
+        routerLink="/test-prof" 
+        routerLinkActive="active">
+        <i class="fas fa-chart-line"></i>
+        <span>Statistiques</span>
+      </a>
+      <a class="nav-button" 
+        routerLink="/create-formation-prof" 
+        routerLinkActive="active">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Création des formations</span>
+      </a>
+      <hr>
+      <a class="nav-button" 
+        routerLink="/create-test-prof" 
+        routerLinkActive="active">
+        <i class="fas fa-tasks"></i>
+        <span>Création des tests</span>
+      </a>
+           
+      <a class="nav-button" 
+        routerLink="/compte-prof" 
+        routerLinkActive="active">
+        <i class="fas fa-user-cog"></i>
+        <span>Paramètres du compte</span>
+      </a>
+      <hr>
+        <a class="nav-button" 
+        routerLink="/welcome" 
+        routerLinkActive="active">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Déconnexion</span>
+      </a>
+      <div id="nav-content-highlight"></div>
+    </div>
+  
+    <input type="checkbox" id="nav-footer-toggle">
+  
+    <div id="nav-footer">
+      <div id="nav-footer-heading">
+        <div id="nav-footer-avatar">
+          <img src="assets/Malak.jpg" alt="Avatar">
+        </div>
+        <div id="nav-footer-titlebox">
+          <a id="nav-footer-title" routerLink="/compte-prof" 
+          routerLinkActive="active" target="_blank">Professeur</a>
+          <span id="nav-footer-subtitle">Prof</span>
+        </div>
+        <label for="nav-footer-toggle">
+          <i class="fas fa-caret-up"></i>
+        </label>
+      </div>
+    </div>
+  </div>
+  
