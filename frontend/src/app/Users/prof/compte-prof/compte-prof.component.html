@@ -1,0 +1,66 @@
+<div class="page-container">
+  <app-sidebar-prof (sidebarToggled)="onSidebarToggled($event)"></app-sidebar-prof>
+  
+  <div class="content-frame" [class.collapsed]="sidebarCollapsed">
+    <div class="login-container">
+      <div class="account-content">
+        <div class="photo-upload-section">
+          <div class="avatar-container" (click)="fileInput.click()">
+            <div *ngIf="!currentProfessor.photo" class="avatar-initials">
+              {{ getInitials() }}
+            </div>
+            <img *ngIf="currentProfessor.photo" [src]="currentProfessor.photo" class="avatar-image">
+            <input #fileInput type="file" hidden (change)="onFileSelected($event)">
+          </div>
+          <button class="upload-button" (click)="fileInput.click()">Changer la photo</button>
+        </div>
+        
+        <form>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Matricule:</label>
+              <input type="text" [value]="currentProfessor.matricule" readonly>
+            </div>
+            <div class="form-group">
+              <label>Nom:</label>
+              <input type="text" [value]="currentProfessor.lastName" readonly>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom:</label>
+              <input type="text" [value]="currentProfessor.firstName" readonly>
+            </div>
+            <div class="form-group">
+              <label>Email:</label>
+              <input type="email" [value]="currentProfessor.email" readonly>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Département:</label>
+              <input type="text" [value]="currentProfessor.department" readonly>
+            </div>
+            <div class="form-group">
+              <label>Années d'expérience:</label>
+              <input type="text" [value]="currentProfessor.yearsOfExperience" readonly>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Modules:</label>
+              <textarea [value]="currentProfessor.modules | safeJoin" readonly rows="1"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Programmes:</label>
+              <textarea [value]="currentProfessor.programs | safeJoin:', '" readonly rows="1"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -60,7 +60,7 @@ export class WelcomeComponent {
             this.router.navigate(['/accueil']);
           } else if (this.authService.isProfesseur()) {
             console.log('Navigating to professeur dashboard');
-            this.router.navigate(['/prof']);
+            this.router.navigate(['/accueil-prof']);
           } else if (this.authService.isEtudiant()) {
             console.log('Navigating to etudiant dashboard');
             this.router.navigate(['/accueil-etudiant']);

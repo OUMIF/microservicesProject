@@ -24,6 +24,10 @@ export const routes: Routes = [
         path: 'accueil',
         loadComponent: () => import('./accueil/accueil.component').then(m => m.AccueilComponent)
     },
+    { 
+        path: 'accueil-prof',
+        loadComponent: () => import('./Users/prof/accueil-prof/accueil-prof.component').then(m => m.AccueilProfComponent)
+    },
     {
         path: 'gestion-etudiants',
         loadComponent: () => import('./gestion-etudiants/gestion-etudiants.component').then(m => m.GestionEtudiantsComponent)
@@ -37,16 +41,32 @@ export const routes: Routes = [
         loadComponent: () => import('./compte-admin/compte-admin.component').then(m => m.CompteAdminComponent)
     },
     {
+        path: 'compte-prof',
+        loadComponent: () => import('./Users/prof/compte-prof/compte-prof.component').then(m => m.CompteProfComponent)
+    },
+    {
         path: 'create-formation',
         loadComponent: () => import('./create-formation/create-formation.component').then(m => m.CreateFormationComponent)
+    },
+    {
+        path: 'create-formation-prof',
+        loadComponent: () => import('./Users/prof/create-formation-prof/create-formation-prof.component').then(m => m.CreateFormationProfComponent)
     },
     {
         path: 'create-test',
         loadComponent: () => import('./create-test/create-test.component').then(m => m.CreateTestComponent)
     },
     {
+        path: 'create-test-prof',
+        loadComponent: () => import('./Users/prof/create-test-prof/create-test-prof.component').then(m => m.CreateTestProfComponent)
+    },
+    {
         path: 'tests',
         loadComponent: () => import('./tests/gestion-tests/gestion-tests.component').then(m => m.GestionTestsComponent)
+    },
+    {
+        path: 'test-prof',
+        loadComponent: () => import('./Users/prof/gestion-test-prof/gestion-test-prof.component').then(m => m.GestionTestProfComponent)
     },
     {
         path: 'test/:id',
