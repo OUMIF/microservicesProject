@@ -60,12 +60,12 @@ export class CompteProfComponent implements OnInit {
   loadProfessorData(): void {
     this.currentProfessor = {
       matricule: 'PROF001',
-      lastName: 'Benali',
-      firstName: 'Ahmed',
-      email: 'ahmed.benali@university.ma',
+      lastName: 'El Mansouri',
+      firstName: 'Amina',
+      email: 'ElMansouri.Amina@uae.ac.ma',
       department: 'Informatique',
       modules: ['Programmation Web', 'Base de Données', 'Algorithmique'],
-      programs: ['Licence Informatique', 'Master MIAGE'],
+      programs: ['Licence Informatique'],
       yearsOfExperience: 8,
       photo: ''
     };

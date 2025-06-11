@@ -149,9 +149,9 @@ a {
 .limited-capacity h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 900;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   color: #210509;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.8rem;
   letter-spacing: -0.05rem;
 }
 
@@ -160,7 +160,7 @@ a {
   font-size: 1.2rem;
   line-height: 1;
   max-width: 1000px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
   font-weight: 300;
   letter-spacing: 0.01rem;
 }
@@ -528,13 +528,13 @@ h6,.h6 {
     font-family: 'Playfair Display', serif;
     font-weight: 600;
     letter-spacing: -0.03rem;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 }
 
 .content-type--course.node-view-mode--teaser .inner-wrapper .group-info .field--name-field-tagline {
     color: #7e7a7a;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', fantasy;
-    font-size: 1.17rem;
+    font-size: 1.05rem;
     font-weight: 530;
     letter-spacing: -0.01rem;
 }
@@ -551,7 +551,7 @@ h6,.h6 {
 .content-type--course.node-view-mode--teaser .inner-wrapper .show-on-hover .field--name-field-teaser-description {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', fantasy;
     font-weight: 100;
-    font-size: 1.15rem;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0rem;
     color: rgb(68, 67, 67);
@@ -560,7 +560,7 @@ h6,.h6 {
 .content-type--course.node-view-mode--teaser .inner-wrapper .show-on-hover .node-link span {
     color: #97091e;
     font-family: 'Playfair Display', serif;
-    line-height: 2rem;
+    line-height: 1.5rem;
     font-size: 1.15rem;
     font-weight: 1000;
     letter-spacing: 0.005rem;

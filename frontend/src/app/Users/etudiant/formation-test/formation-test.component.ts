@@ -51,11 +51,11 @@ export class FormationTestComponent implements OnInit {
   currentStudent: Student = {
     photo: '',
     cne: 'A123456',
-    lastName: 'Doe',
-    firstName: 'John',
-    email: 'john.doe@example.com',
-    birthPlace: 'Casa',
-    birthDate: '1995-05-15',
+    lastName: 'Ben Ali',
+    firstName: 'Ahmed',
+    email: 'ahmed@example.com',
+    birthPlace: 'Tanger',
+    birthDate: '2003-05-15',
     program: 'GINF',
     studyYear: '2021/2022',
     apogee: '123456'
@@ -64,22 +64,22 @@ export class FormationTestComponent implements OnInit {
   notifications = [
     {
       id: 1,
-      title: 'Nouveau test disponible',
+      title: 'Évaluation - Développement Web avec React',
       message: 'Test de programmation Java - Niveau intermédiaire',
-      date: 'Il y a 2 heures',
+      date: 'Il y a 5 min',
       read: false
     },
     {
       id: 2,
       title: 'Test terminé',
-      message: 'Web Frontend - Score: 85%',
-      date: '15/03/2024',
+      message: 'Évaluation - Systèmes embarqués et programmation Arduino',
+      date: '10/06/2025',
       read: true
     },
     {
       id: 3,
       title: 'Rappel de test',
-      message: 'Test de sécurité réseau - Échéance dans 24h',
+      message: 'Évaluation - Introduction à la Data Science avec Python',
       date: 'Il y a 5 heures',
       read: false
     }
@@ -88,21 +88,21 @@ export class FormationTestComponent implements OnInit {
   testHistory = [
     {
       id: 101,
-      title: 'Web Frontend Avancé',
-      score: '85%',
-      date: '15/03/2024'
+      title: 'Évaluation - Sécurité des réseaux et cryptographie',
+      score: '',
+      date: '30/05/2025'
     },
     {
       id: 102,
-      title: 'Réseaux Informatiques',
-      score: '92%',
-      date: '10/03/2024'
+      title: 'Évaluation - Optimisation des processus industriels',
+      score: '',
+      date: '20/05/2025'
     },
     {
       id: 103,
-      title: 'Base de données SQL',
-      score: '78%',
-      date: '01/03/2024'
+      title: 'Évaluation - Administration des bases de données',
+      score: '',
+      date: '30/04/2025'
     }
   ];
   
@@ -138,18 +138,18 @@ export class FormationTestComponent implements OnInit {
 
   courses = [
     {
-      title: 'Data Science Principles',
-      tagline: 'Are you prepared for our data-driven world?',
-      description: '<p>Data Science Principles gives you an overview of data science with a code- and math-free introduction to prediction, causality, data wrangling, privacy, and ethics.</p>',
+      title: 'Développement Web avec React',
+      tagline: 'Maîtrisez les bases du développement front-end moderne',
+      description: '<p>Apprenez à créer des interfaces utilisateur dynamiques et performantes avec React, le framework JavaScript populaire pour le développement web.</p>',
       imageUrl: 'assets/1.jpg',
-      itemId: '1f5f67c1-45e8-451a-bda4-de4b2571571c'
+      itemId: '1a2b3c4d-11aa-22bb-33cc-44dd55667788'
     },
     {
-      title: 'Data Science for Business',
-      tagline: 'Move beyond the spreadsheet',
-      description: '<p>Designed for managers, this course provides a hands-on approach for demystifying the data science ecosystem and making you a more conscientious.</p>',
+      title: 'Introduction à la Data Science avec Python',
+      tagline: 'Exploitez le potentiel de Python pour l’analyse de données',
+      description: '<p>Formation pratique sur les bibliothèques Python essentielles pour la data science, comme Pandas, NumPy, et Matplotlib, ainsi que les bases de l’apprentissage automatique.</p>',
       imageUrl: 'assets/2.jpg',
-      itemId: '98160cc0-5769-4b63-a7b3-01d150d36b13'
+      itemId: '9e8d7c6b-55aa-44bb-88cc-99dd11223344'
     }
   ];
 

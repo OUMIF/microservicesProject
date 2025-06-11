@@ -51,7 +51,7 @@
               <div *ngFor="let test of testHistory" class="history-item" (click)="navigateToTest(test.id)">
                 <div class="test-info">
                   <h5>{{ test.title }}</h5>
-                  <p>Score: {{ test.score }} - {{ test.date }}</p>
+                  <p>{{ test.score }} - {{ test.date }}</p>
                 </div>
               </div>
             </div>

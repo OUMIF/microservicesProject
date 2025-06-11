@@ -54,7 +54,7 @@
               <div *ngFor="let test of testHistory" class="history-item" (click)="navigateToTest(test.id)">
                 <div class="test-info">
                   <h5>{{ test.title }}</h5>
-                  <p>Score: {{ test.score }} - {{ test.date }}</p>
+                  <p>{{ test.score }} - {{ test.date }}</p>
                 </div>
               </div>
             </div>
@@ -75,11 +75,12 @@
   <div class="hero-content">
     <section class="featured-course">      
       <div class="course-details">
-        <h2 class="course-title">Outsmarting Implicit Bias</h2>
+        <h2 class="course-title">Bienvenue dans votre espace d’évaluation</h2>
         <p class="course-description">
-          Designed for individuals and teams, this Harvard Online course taught by preeminent Harvard 
-          Professor Mahzarin Banaji teaches the science of implicit bias and strategies to counter the 
-          impact of bias in the workplace.
+          Participez à l’amélioration des formations en évaluant celles que vous avez suivies via des questionnaires en ligne, simples et confidentiels.Chaque réponse compte vos retours sont analysés pour ajuster et renforcer la qualité de l’enseignement.
+        </p>
+        <p class="course-description">
+          Grâce à cette plateforme centralisée, vous devenez acteur du changement et partenaire de l’évolution pédagogique.
         </p>
       </div>
     </section>
@@ -93,8 +94,8 @@
 
   <section class="limited-capacity">
     <div class="content-wrapper">
-      <h2>Explore Course</h2>
-      <p>Applications close soon for these courses. Join the next cohort today!</p><hr>
+      <h2>Explorez les formations</h2>
+      <p>Ne manquez pas les dernières sessions d’évaluation. Consultez les formations disponibles et accédez aux tests correspondants.</p><hr>
       <div class="title-underline"></div>
     </div>
   </section>
@@ -138,7 +139,7 @@
                         <div class="field__item" [innerHTML]="course.description"></div>
                       </div>
                       <div class="node-link" (click)="navigateToCourseDetail(course)">
-                        <span>Read More &gt;</span>
+                        <span>Accéder à l’évaluation &gt;</span>
                       </div>
                     </div>
                   </div>
@@ -154,7 +155,7 @@
 </div>
 
 <div class="courses-section">
-  <a href="#" class="course-button">VOIR TOUS LES COURS</a>
+  <a href="#" class="course-button">VOIR TOUS LES FORMATIONS</a>
 </div>
 <hr class="footer-divider">
 <!-- Section footer avec formulaire de contact -->

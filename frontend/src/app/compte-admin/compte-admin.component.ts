@@ -11,10 +11,10 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 export class CompteAdminComponent {
   sidebarCollapsed = false;
   avatarUrl = 'assets/Malak.jpg';
-  firstName = 'Jean';
-  lastName = 'Dupont';
-  email = 'jean.dupont@example.com';
-  username = 'jeandupont';
+  firstName = 'Mohamed';
+  lastName = 'Jabir';
+  email = 'Jabir.Mohamed@gmail.com';
+  username = 'Administrateur';
   
   onSidebarToggled(isCollapsed: boolean) {
     this.sidebarCollapsed = isCollapsed;
