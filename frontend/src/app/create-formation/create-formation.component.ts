@@ -147,7 +147,7 @@ formations: Formation[] = [
     sujet: 'Découvrez le monde de l’électronique programmable',
     description: '<p>Apprenez à concevoir et programmer des systèmes embarqués avec Arduino. Idéal pour les étudiants en génie électrique et électronique.</p>',
     imageUrl: 'assets/3.jpg',
-    filieres: ['G3EI'],
+    filieres: ['G3EI, GINF'],
     Idformation: '3f4g5h6i-77cc-88dd-99ee-00ff11223344',
     professeurs: [
       {
@@ -165,7 +165,7 @@ formations: Formation[] = [
     sujet: 'Protégez vos données et communications',
     description: '<p>Ce cours vous initie aux principes de la cybersécurité, de la cryptographie et des protocoles de sécurité réseau.</p>',
     imageUrl: 'assets/4.jpg',
-    filieres: ['GSEA'],
+    filieres: ['GSEA, GINF'],
     Idformation: 'aabbccdd-eeff-0011-2233-445566778899',
     professeurs: [
       {
@@ -183,7 +183,7 @@ formations: Formation[] = [
     sujet: 'Améliorez la performance industrielle',
     description: '<p>Ce module aborde les techniques modernes d’optimisation, la logistique et la gestion de la production industrielle.</p>',
     imageUrl: 'assets/5.jpg',
-    filieres: ['GIND'],
+    filieres: ['GIND, GINF'],
     Idformation: '99887766-5544-3322-1100-aabbccddeeff',
     professeurs: [
       {
