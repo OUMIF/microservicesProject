@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Data",
+    "\\DTOs",
+    "\\Interface",
+    "\\Models",
+    "\\obj",
+    "\\obj\\Debug",
+    "\\obj\\Release",
+    "\\Properties",
+    "\\Services"
+  ],
+  "SelectedNode": "\\DTOs",
+  "PreviewInSolutionExplorer": false
+}

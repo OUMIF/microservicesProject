@@ -1,0 +1,689 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\rabbitmqstudentformationlookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\rabbitmqstudentformationlookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\rabbitmqformationlookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\rabbitmqformationlookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\controllers\\studenttestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:controllers\\studenttestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\iformationlookupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\iformationlookupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\iformationapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\iformationapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\istudentformationlookupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\istudentformationlookupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\formationapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\formationapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\studenttestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\studenttestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\models\\studentanswer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:models\\studentanswer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\models\\studenttestresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:models\\studenttestresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\testresponseresultdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\testresponseresultdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\testresponseresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\testresponseresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\ireponseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\ireponseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\reponseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\reponseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\submittestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\submittestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\models\\test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:models\\test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\models\\option.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:models\\option.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\enrollmentverificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\enrollmentverificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\testresultdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\testresultdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\testforstudentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\testforstudentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\studenttestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\studenttestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\questionresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\questionresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\questiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\questiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\istudenttestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\istudenttestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\testupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\testupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\testresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\testresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\createtestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\createtestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\dtos\\testdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:dtos\\testdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\testservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\testservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\istudentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\istudentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\services\\itestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:services\\itestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|c:\\users\\osaka\\desktop\\projetquestionnaire\\server\\test\u0026reponce\\test\u0026reponce.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{49C7F135-AF8E-428E-8120-FFC9E17F0F1F}|test\u0026reponce.csproj|solutionrelative:test\u0026reponce.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RabbitMQStudentFormationLookup.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\RabbitMQStudentFormationLookup.cs",
+              "RelativeDocumentMoniker": "services\\RabbitMQStudentFormationLookup.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\RabbitMQStudentFormationLookup.cs",
+              "RelativeToolTip": "services\\RabbitMQStudentFormationLookup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T17:31:41.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAIwHMAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:26:37.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TestController.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Controllers\\TestController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TestController.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Controllers\\TestController.cs",
+              "RelativeToolTip": "Controllers\\TestController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAI8AAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T17:48:26.753Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StudentTestsController.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Controllers\\StudentTestsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\StudentTestsController.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Controllers\\StudentTestsController.cs",
+              "RelativeToolTip": "Controllers\\StudentTestsController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAuwCIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T03:08:17.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Data\\AppDbContext.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADMAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:28:02.528Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RabbitMQFormationLookup.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\RabbitMQFormationLookup.cs",
+              "RelativeDocumentMoniker": "services\\RabbitMQFormationLookup.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\RabbitMQFormationLookup.cs",
+              "RelativeToolTip": "services\\RabbitMQFormationLookup.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAYwLAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T17:39:44.938Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IFormationLookupService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IFormationLookupService.cs",
+              "RelativeDocumentMoniker": "services\\IFormationLookupService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IFormationLookupService.cs",
+              "RelativeToolTip": "services\\IFormationLookupService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T17:39:22.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IFormationApiService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IFormationApiService.cs",
+              "RelativeDocumentMoniker": "services\\IFormationApiService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IFormationApiService.cs",
+              "RelativeToolTip": "services\\IFormationApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T03:56:23.934Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IStudentFormationLookupService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IStudentFormationLookupService.cs",
+              "RelativeDocumentMoniker": "services\\IStudentFormationLookupService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IStudentFormationLookupService.cs",
+              "RelativeToolTip": "services\\IStudentFormationLookupService.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAwBEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T17:31:13.33Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FormationApiService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\FormationApiService.cs",
+              "RelativeDocumentMoniker": "services\\FormationApiService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\FormationApiService.cs",
+              "RelativeToolTip": "services\\FormationApiService.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAswEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T03:58:57.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "StudentService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\StudentService.cs",
+              "RelativeDocumentMoniker": "services\\StudentService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\StudentService.cs",
+              "RelativeToolTip": "services\\StudentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T03:10:01.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "StudentTestService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\StudentTestService.cs",
+              "RelativeDocumentMoniker": "services\\StudentTestService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\StudentTestService.cs",
+              "RelativeToolTip": "services\\StudentTestService.cs",
+              "ViewState": "AgIAAEIBAAAAAAAAAAAmwF0BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T17:32:33.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "StudentAnswer.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Models\\StudentAnswer.cs",
+              "RelativeDocumentMoniker": "Models\\StudentAnswer.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Models\\StudentAnswer.cs",
+              "RelativeToolTip": "Models\\StudentAnswer.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAswBMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T17:28:28.748Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "StudentTestResponse.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Models\\StudentTestResponse.cs",
+              "RelativeDocumentMoniker": "Models\\StudentTestResponse.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Models\\StudentTestResponse.cs",
+              "RelativeToolTip": "Models\\StudentTestResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T03:04:04.642Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TestResponseResultDto.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestResponseResultDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\TestResponseResultDto.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestResponseResultDto.cs",
+              "RelativeToolTip": "DTOs\\TestResponseResultDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T03:07:28.69Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TestResponseResult.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestResponseResult.cs",
+              "RelativeDocumentMoniker": "DTOs\\TestResponseResult.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestResponseResult.cs",
+              "RelativeToolTip": "DTOs\\TestResponseResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T04:00:14.69Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IReponseService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IReponseService.cs",
+              "RelativeDocumentMoniker": "services\\IReponseService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IReponseService.cs",
+              "RelativeToolTip": "services\\IReponseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T03:09:02.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ReponseService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\ReponseService.cs",
+              "RelativeDocumentMoniker": "services\\ReponseService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\ReponseService.cs",
+              "RelativeToolTip": "services\\ReponseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T03:10:30.83Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "SubmitTestDto.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\SubmitTestDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\SubmitTestDto.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\SubmitTestDto.cs",
+              "RelativeToolTip": "DTOs\\SubmitTestDto.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAcwBYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T17:29:50.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Test.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Models\\Test.cs",
+              "RelativeDocumentMoniker": "Models\\Test.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Models\\Test.cs",
+              "RelativeToolTip": "Models\\Test.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:23:00.17Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Question.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Models\\Question.cs",
+              "RelativeDocumentMoniker": "Models\\Question.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Models\\Question.cs",
+              "RelativeToolTip": "Models\\Question.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:23:32.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Option.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Models\\Option.cs",
+              "RelativeDocumentMoniker": "Models\\Option.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Models\\Option.cs",
+              "RelativeToolTip": "Models\\Option.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T17:45:56.407Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "EnrollmentVerificationService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\EnrollmentVerificationService.cs",
+              "RelativeDocumentMoniker": "services\\EnrollmentVerificationService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\EnrollmentVerificationService.cs",
+              "RelativeToolTip": "services\\EnrollmentVerificationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T17:05:24.42Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "TestResultDto.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestResultDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\TestResultDto.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestResultDto.cs",
+              "RelativeToolTip": "DTOs\\TestResultDto.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAIwBgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T17:30:28.361Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "TestForStudentDto.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestForStudentDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\TestForStudentDto.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestForStudentDto.cs",
+              "RelativeToolTip": "DTOs\\TestForStudentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAcwBYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T17:29:27.243Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "StudentTestDto.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\StudentTestDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\StudentTestDto.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\StudentTestDto.cs",
+              "RelativeToolTip": "DTOs\\StudentTestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T17:29:01.666Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "QuestionResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\QuestionResponseDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\QuestionResponseDto.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\QuestionResponseDto.cs",
+              "RelativeToolTip": "DTOs\\QuestionResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T03:06:55.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "QuestionDto.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\QuestionDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\QuestionDto.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\QuestionDto.cs",
+              "RelativeToolTip": "DTOs\\QuestionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:25:01.311Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "IStudentTestService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IStudentTestService.cs",
+              "RelativeDocumentMoniker": "services\\IStudentTestService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IStudentTestService.cs",
+              "RelativeToolTip": "services\\IStudentTestService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T17:32:14.702Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "TestUpdateDto.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestUpdateDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\TestUpdateDto.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestUpdateDto.cs",
+              "RelativeToolTip": "DTOs\\TestUpdateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T01:51:49.908Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "TestResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestResponseDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\TestResponseDto.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestResponseDto.cs",
+              "RelativeToolTip": "DTOs\\TestResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T03:06:17.624Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "CreateTestDto.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\CreateTestDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\CreateTestDto.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\CreateTestDto.cs",
+              "RelativeToolTip": "DTOs\\CreateTestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T15:24:47.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "TestDto.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\TestDto.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\DTOs\\TestDto.cs",
+              "RelativeToolTip": "DTOs\\TestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T17:46:23.621Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "TestService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\TestService.cs",
+              "RelativeDocumentMoniker": "services\\TestService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\TestService.cs",
+              "RelativeToolTip": "services\\TestService.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAswBEBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T17:40:50.469Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "IStudentService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IStudentService.cs",
+              "RelativeDocumentMoniker": "services\\IStudentService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\IStudentService.cs",
+              "RelativeToolTip": "services\\IStudentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T03:09:31.88Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ITestService.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\ITestService.cs",
+              "RelativeDocumentMoniker": "services\\ITestService.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\services\\ITestService.cs",
+              "RelativeToolTip": "services\\ITestService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T17:47:40.227Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-06T15:36:38.763Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T20:11:27.486Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\WeatherForecast.cs",
+              "RelativeToolTip": "WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T17:33:22.484Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "test\u0026reponce.csproj",
+              "DocumentMoniker": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\test\u0026reponce.csproj",
+              "RelativeDocumentMoniker": "test\u0026reponce.csproj",
+              "ToolTip": "C:\\Users\\osaka\\Desktop\\projetQuestionnaire\\Server\\test\u0026reponce\\test\u0026reponce.csproj",
+              "RelativeToolTip": "test\u0026reponce.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-06T15:23:57.463Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:5:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:6:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
