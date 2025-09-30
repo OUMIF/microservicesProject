@@ -5,6 +5,7 @@ using System.Security.Claims;
 namespace UserService.Controllers
 {
     [ApiController]
+    
     [Route("api/[controller]")]
     public class TestController : ControllerBase
     {

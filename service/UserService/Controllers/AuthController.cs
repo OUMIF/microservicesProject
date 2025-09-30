@@ -25,6 +25,7 @@ namespace UserService.Controllers
             _signInManager = signInManager;
             _tokenService = tokenService;
             _logger = logger;
+            
         }
 
         [HttpPost("login")]
